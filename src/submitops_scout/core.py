@@ -118,6 +118,7 @@ class RepoEvidence:
     codex_mentions: tuple[str, ...]
     gpt56_mentions: tuple[str, ...]
     feedback_mentions: tuple[str, ...]
+    devpost_flow_paths: tuple[str, ...]
     secret_findings: tuple[SecretFinding, ...]
     scanned_files: int
 
@@ -153,6 +154,7 @@ class _EvidenceCollector:
     codex_mentions: list[str]
     gpt56_mentions: list[str]
     feedback_mentions: list[str]
+    devpost_flow_paths: list[str]
     secrets: list[SecretFinding]
     scanned_files: int = 0
 
@@ -174,6 +176,8 @@ class _EvidenceCollector:
             and suffix in SAMPLE_SUFFIXES
         ):
             self.samples.append(rel)
+        if "devpost-registration-gate" in lower_rel:
+            self.devpost_flow_paths.append(rel)
 
     def add_text(self, rel: str, text: str) -> None:
         self.scanned_files += 1
@@ -212,6 +216,7 @@ class _EvidenceCollector:
             codex_mentions=_unique(self.codex_mentions),
             gpt56_mentions=_unique(self.gpt56_mentions),
             feedback_mentions=_unique(self.feedback_mentions),
+            devpost_flow_paths=_unique(self.devpost_flow_paths),
             secret_findings=tuple(self.secrets),
             scanned_files=self.scanned_files,
         )
@@ -231,6 +236,7 @@ def _new_collector() -> _EvidenceCollector:
         codex_mentions=[],
         gpt56_mentions=[],
         feedback_mentions=[],
+        devpost_flow_paths=[],
         secrets=[],
     )
 
@@ -537,6 +543,20 @@ def _feedback_value(evidence: RepoEvidence) -> str:
     return "BLOCKED: paste /feedback Codex Session ID from primary build thread"
 
 
+def _devpost_flow_section(evidence: RepoEvidence) -> str:
+    if not evidence.devpost_flow_paths:
+        return ""
+    paths = ", ".join(evidence.devpost_flow_paths[:3])
+    return f"""
+## Live Devpost State
+
+- Event registration: evidence found in {paths}.
+- Project draft creation: BLOCKED by Devpost image reCAPTCHA after `Create project`;
+  do not create final submission claims until the entrant completes the visible
+  CAPTCHA and the draft preview is checked.
+"""
+
+
 def render_devpost_field_map(packet: SubmissionPacket) -> str:
     answers = packet.event.draft_answers
     title = answers.title or packet.event.name.removesuffix(" Packet")
@@ -574,6 +594,7 @@ Status: {paste_status}
 - Repository URL: {_repo_url(packet.evidence)}
 - Demo video URL: {_video_url(packet.evidence)}
 - /feedback Codex Session ID: {_feedback_value(packet.evidence)}
+{_devpost_flow_section(packet.evidence)}
 
 ## Project Description
 
@@ -661,6 +682,7 @@ Decision: {packet.decision.upper()}
 - Sample data: {", ".join(packet.evidence.sample_data[:6]) or "missing"}
 - Video URLs: {", ".join(packet.evidence.video_urls) or "missing"}
 - Video assets: {", ".join(packet.evidence.video_assets) or "missing"}
+- Devpost flow evidence: {", ".join(packet.evidence.devpost_flow_paths) or "missing"}
 - Public URLs found: {len(packet.evidence.public_urls)}
 
 ## Readiness Checks

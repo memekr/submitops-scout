@@ -21,7 +21,7 @@
       "Devpost says builders should create a working project using Codex with GPT-5.6 and can enter one of four tracks: Apps for Your Life, Work and Productivity, Developer Tools, or Education",
       "Required submission materials now include a chosen category, project description, public YouTube demo video under three minutes with voiceover covering how Codex and GPT-5.6 were used, repository URL with README/setup/sample data, and a `/feedback` Codex Session ID from the primary build thread",
       "The theme fits this workspace and the user's Codex-heavy workflow",
-      "OpenAI still needs a `/feedback` Session ID and live GPT-5.6 proof before Devpost final submit; the public repository and public YouTube demo URL are now verified",
+      "OpenAI still needs a `/feedback` Session ID and live GPT-5.6 proof before Devpost final submit; the public repository, public YouTube demo URL, and Devpost event registration are now verified",
       "OpenAI/Codex access",
       "OpenAI/Codex credits are available only through the event resource flow and must remain prepaid/no-auto-top-up before any live GPT-5.6 evidence run",
       "Working project built with Codex and GPT-5.6",
@@ -36,23 +36,23 @@
       "https://openai.devpost.com/",
       "https://openai.devpost.com/rules",
       "OpenAI's Build Week page says the challenge opens July 13, 2026, submissions are due July 21, 2026, judging runs July 22 to August 7, and winners are announced August 12",
-      "Devpost now shows OpenAI Build Week running online through July 21, 2026, 5:00 PM PDT, with $100,000 in cash prizes and 15,212 participants on public surfaces during this recheck",
-      "OpenAI still needs a `/feedback` Session ID and live GPT-5.6 proof before Devpost final submit; the public repository and public YouTube demo URL are now verified",
+      "Devpost now shows OpenAI Build Week running online through July 21, 2026, 5:00 PM PDT, with $100,000 in cash prizes and 18,605 participants on public surfaces during this recheck",
+      "OpenAI still needs a `/feedback` Session ID and live GPT-5.6 proof before Devpost final submit; the public repository, public YouTube demo URL, and Devpost event registration are now verified",
       "Event URL: https://openai.devpost.com/"
     ],
     "source_notes": [
       "https://openai.devpost.com/rules",
-      "Devpost now shows OpenAI Build Week running online through July 21, 2026, 5:00 PM PDT, with $100,000 in cash prizes and 15,212 participants on public surfaces during this recheck",
+      "Devpost now shows OpenAI Build Week running online through July 21, 2026, 5:00 PM PDT, with $100,000 in cash prizes and 18,605 participants on public surfaces during this recheck",
       "Devpost Official Rules are now posted; public rule/search surfaces list the submission period as July 13, 2026, 9:00 AM Pacific Time through July 21, 2026, 5:00 PM Pacific Time",
       "## Deadline and Timezone",
       "Public deadline: July 21, 2026, 5:00 PM PT, per Devpost overview copy",
       "Rules state: Official Rules are now posted; still do not accept final terms or submit if the logged-in flow asks for payment, travel, tax, banking, government ID, employment/IP-transfer commitments beyond ordinary hackathon rules, CAPTCHA bypass, or unsupported eligibility facts",
       "Official rules and FAQs are now available, so implementation can proceed without the earlier rules-not-posted stop",
       "Qwen Cloud has a nearly complete local/public packet and a July 20, 2026 PDT deadline",
-      "Devpost join/application and any rules acceptance still require logged-in account flow; final submit may hit CAPTCHA",
       "Builders lose hackathons at the last mile: rules drift, proof links are missing, demo videos overrun, and teams make unsupported claims under deadline pressure. SubmitOps Scout uses Codex to turn a repo plus competition URLs into a ranked submission command center: source snapshots, eligibility gates, judging-rubric fit, proof ledger, Devpost drafts, demo scripts, blocker lists, and validation commands",
       "It has a real, demonstrated audience: builders shipping under deadline",
-      "2. Store normalized opportunity facts: deadline, eligibility, required accounts, required materials, judging criteria, proof links, and blockers"
+      "2. Store normalized opportunity facts: deadline, eligibility, required accounts, required materials, judging criteria, proof links, and blockers",
+      "2. Show source facts, deadline conversion, required materials, and excluded/unknown eligibility facts"
     ],
     "draft_answers": {
       "title": "SubmitOps Scout: Codex-Powered Submission Command Center",
@@ -60,7 +60,7 @@
       "what_it_does": "It reads public competition pages, scans local repo evidence, maps judging criteria to proof, drafts submission copy, and refuses unsupported claims until a human supplies missing account, eligibility, legal, payment, or publication facts.",
       "why_it_can_win": "It is a practical Codex-native developer tool with a live deadline use case. Instead of only generating code, it helps teams ship truthful, judge-ready submissions under pressure."
     },
-    "captured_at": "2026-07-15T12:27:44+00:00"
+    "captured_at": "2026-07-15T18:17:40+00:00"
   },
   "evidence": {
     "root": ".",
@@ -77,6 +77,7 @@
       "src/submitops_scout/gpt56_adapter.py",
       "submission/openai-build-week-demo-video-publication.md",
       "submission/openai-build-week-devpost-field-map.md",
+      "submission/openai-build-week-devpost-registration-gate.md",
       "submission/openai-build-week-draft.md"
     ],
     "test_files": [
@@ -105,7 +106,8 @@
       "https://qwencloud-hackathon.devpost.com/",
       "https://qwencloud-hackathon.devpost.com/rules",
       "https://www.qwencloud.com/challenge/hackathon",
-      "https://www.youtube.com/oembed?url=https://youtu.be/6PCzqJu1dRU&format=json"
+      "https://www.youtube.com/oembed?url=https://youtu.be/6PCzqJu1dRU&format=json",
+      "https://devpost.com/submit-to/30223-openai-build-week/manage/submissions"
     ],
     "codex_mentions": [
       "README.md",
@@ -114,6 +116,7 @@
       "src/submitops_scout/core.py",
       "submission/openai-build-week-demo-video-publication.md",
       "submission/openai-build-week-devpost-field-map.md",
+      "submission/openai-build-week-devpost-registration-gate.md",
       "submission/openai-build-week-draft.md"
     ],
     "gpt56_mentions": [
@@ -124,11 +127,15 @@
       "src/submitops_scout/gpt56_adapter.py",
       "submission/openai-build-week-demo-video-publication.md",
       "submission/openai-build-week-devpost-field-map.md",
+      "submission/openai-build-week-devpost-registration-gate.md",
       "submission/openai-build-week-draft.md"
     ],
     "feedback_mentions": [],
+    "devpost_flow_paths": [
+      "submission/openai-build-week-devpost-registration-gate.md"
+    ],
     "secret_findings": [],
-    "scanned_files": 12
+    "scanned_files": 13
   },
   "checks": [
     {
@@ -196,5 +203,5 @@
   "blockers": [
     "/feedback Session ID present"
   ],
-  "generated_at": "2026-07-15T12:27:44+00:00"
+  "generated_at": "2026-07-15T18:17:40+00:00"
 }

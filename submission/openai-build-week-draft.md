@@ -1,6 +1,7 @@
 # SubmitOps Scout OpenAI Build Week Draft
 
 Created: 2026-07-15 09:08 KST.
+Devpost registration: completed 2026-07-16 03:11 KST under `spdish12`.
 
 ## Target
 
@@ -10,6 +11,7 @@ Created: 2026-07-15 09:08 KST.
 - Project: SubmitOps Scout: Codex-powered submission command center.
 - Public repository: https://github.com/memekr/submitops-scout
 - Public demo video: https://youtu.be/6PCzqJu1dRU
+- Devpost registration evidence: `/Users/mac/hackathon-agent/submitops-scout/submission/openai-build-week-devpost-registration-gate.md`
 
 ## Current State
 
@@ -28,6 +30,7 @@ Do not claim final Build Week eligibility yet:
 
 - no `/feedback` Session ID has been inserted into final submission materials
 - no live GPT-5.6 review call has been run with verified free credits
+- Devpost event registration is complete, but project draft creation is blocked by image reCAPTCHA
 - no Devpost project draft has been created or submitted
 
 ## Current Local Artifacts
@@ -38,6 +41,7 @@ Do not claim final Build Week eligibility yet:
 - GPT-5.6 payload: `/Users/mac/hackathon-agent/submitops-scout/reports/openai-build-week-gpt56-payload.json`
 - Qwen fixture: `/Users/mac/hackathon-agent/submitops-scout/fixtures/qwen-cloud-packet.md`
 - Public demo video publication packet: `/Users/mac/hackathon-agent/submitops-scout/submission/openai-build-week-demo-video-publication.md`
+- Devpost registration gate: `/Users/mac/hackathon-agent/submitops-scout/submission/openai-build-week-devpost-registration-gate.md`
 - Public repository: `https://github.com/memekr/submitops-scout`
 
 ## Draft Devpost Copy
@@ -58,4 +62,4 @@ How Codex and GPT-5.6 are used:
 
 ## Next Submission Step
 
-Insert the `/feedback` Session ID and run the final Devpost preview. Do not submit until `/feedback` evidence and the live GPT-5.6/no-billing boundary are complete or explicitly downgraded in the final form.
+Have the entrant complete the Devpost image reCAPTCHA that appears after `Create project`, insert the `/feedback` Session ID, and run the final Devpost preview. Do not submit until `/feedback` evidence and the live GPT-5.6/no-billing boundary are complete or explicitly downgraded in the final form.

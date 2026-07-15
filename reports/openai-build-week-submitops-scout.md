@@ -1,6 +1,6 @@
 # SubmitOps Scout Packet
 
-Generated: 2026-07-15T12:27:44+00:00
+Generated: 2026-07-15T18:17:40+00:00
 Decision: DOWNGRADE
 
 ## Event Snapshot
@@ -8,7 +8,7 @@ Decision: DOWNGRADE
 - Event: OpenAI Build Week Packet
 - URL: https://openai.devpost.com/
 - Deadline: July 21, 2026, 5:00 PM PT, per Devpost overview copy.
-- Captured at: 2026-07-15T12:27:44+00:00
+- Captured at: 2026-07-15T18:17:40+00:00
 
 ## Tracks
 
@@ -23,7 +23,7 @@ Decision: DOWNGRADE
 - Devpost says builders should create a working project using Codex with GPT-5.6 and can enter one of four tracks: Apps for Your Life, Work and Productivity, Developer Tools, or Education
 - Required submission materials now include a chosen category, project description, public YouTube demo video under three minutes with voiceover covering how Codex and GPT-5.6 were used, repository URL with README/setup/sample data, and a `/feedback` Codex Session ID from the primary build thread
 - The theme fits this workspace and the user's Codex-heavy workflow
-- OpenAI still needs a `/feedback` Session ID and live GPT-5.6 proof before Devpost final submit; the public repository and public YouTube demo URL are now verified
+- OpenAI still needs a `/feedback` Session ID and live GPT-5.6 proof before Devpost final submit; the public repository, public YouTube demo URL, and Devpost event registration are now verified
 - OpenAI/Codex access
 - OpenAI/Codex credits are available only through the event resource flow and must remain prepaid/no-auto-top-up before any live GPT-5.6 evidence run
 - Working project built with Codex and GPT-5.6
@@ -35,14 +35,15 @@ Decision: DOWNGRADE
 ## Repository Evidence
 
 - Root: .
-- Scanned text files: 12
+- Scanned text files: 13
 - README: README.md
 - License: LICENSE
 - Tests: 2
 - Sample data: fixtures/qwen-cloud-packet.md, reports/openai-build-week-gpt56-payload.json, reports/openai-build-week-submitops-scout.json, reports/openai-build-week-submitops-scout.md
 - Video URLs: https://youtu.be/6PCzqJu1dRU, https://www.youtube.com/oembed?url=https://youtu.be/6PCzqJu1dRU&format=json
 - Video assets: missing
-- Public URLs found: 10
+- Devpost flow evidence: submission/openai-build-week-devpost-registration-gate.md
+- Public URLs found: 11
 
 ## Readiness Checks
 

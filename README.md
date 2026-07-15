@@ -6,6 +6,7 @@ notes, and exact external blockers.
 
 Public repository: https://github.com/memekr/submitops-scout
 Public demo video: https://youtu.be/6PCzqJu1dRU
+Devpost registration evidence: submission/openai-build-week-devpost-registration-gate.md
 
 This initial Build Week version is scoped to the OpenAI Build Week requirements:
 
@@ -47,6 +48,14 @@ bash scripts/render-openai-demo-video.sh
 The generated MP4 is intentionally written under `output/`, which is ignored by
 git. The publication evidence and SHA-256 are recorded in
 `submission/openai-build-week-demo-video-publication.md`.
+
+## Devpost Registration Boundary
+
+The OpenAI Build Week Devpost registration is complete under `spdish12`.
+Project draft creation is blocked at Devpost image reCAPTCHA after `Create
+project`; the visible challenge was `Select all squares with traffic lights`.
+No CAPTCHA bypass, project draft, final submit, payment, identity, tax, or
+banking action was performed.
 
 ## Demo Fixture
 
