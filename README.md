@@ -4,6 +4,8 @@ SubmitOps Scout turns hackathon rules plus a local project repository into a
 submission packet: source facts, evidence links, readiness checks, downgrade
 notes, and exact external blockers.
 
+Public repository: https://github.com/memekr/submitops-scout
+
 This initial Build Week version is scoped to the OpenAI Build Week requirements:
 
 - working project built with Codex and GPT-5.6

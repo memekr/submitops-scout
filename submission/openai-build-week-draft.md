@@ -8,6 +8,7 @@ Created: 2026-07-15 09:08 KST.
 - Track: Developer Tools
 - Deadline: July 21, 2026, 5:00 PM PDT; July 22, 2026, 9:00 AM KST.
 - Project: SubmitOps Scout: Codex-powered submission command center.
+- Public repository: https://github.com/memekr/submitops-scout
 
 ## Current State
 
@@ -36,6 +37,7 @@ Do not claim final Build Week eligibility yet:
 - Devpost field map: `/Users/mac/hackathon-agent/submitops-scout/submission/openai-build-week-devpost-field-map.md`
 - GPT-5.6 payload: `/Users/mac/hackathon-agent/submitops-scout/reports/openai-build-week-gpt56-payload.json`
 - Qwen fixture: `/Users/mac/hackathon-agent/submitops-scout/fixtures/qwen-cloud-packet.md`
+- Public repository: `https://github.com/memekr/submitops-scout`
 
 ## Draft Devpost Copy
 
@@ -55,4 +57,4 @@ How Codex and GPT-5.6 are used:
 
 ## Next Submission Step
 
-Publish the repository after a secret scan, then prepare a short public demo path. Do not submit until the final video, `/feedback` Session ID, and GPT-5.6 live evidence are complete.
+Prepare a short public demo path and insert the `/feedback` Session ID. Do not submit until the final video, `/feedback` Session ID, and GPT-5.6 live evidence are complete.

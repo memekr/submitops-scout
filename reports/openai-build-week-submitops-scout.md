@@ -1,6 +1,6 @@
 # SubmitOps Scout Packet
 
-Generated: 2026-07-15T06:12:34+00:00
+Generated: 2026-07-15T06:14:03+00:00
 Decision: DOWNGRADE
 
 ## Event Snapshot
@@ -8,7 +8,7 @@ Decision: DOWNGRADE
 - Event: OpenAI Build Week Packet
 - URL: https://openai.devpost.com/
 - Deadline: July 21, 2026, 5:00 PM PT, per Devpost overview copy.
-- Captured at: 2026-07-15T06:12:34+00:00
+- Captured at: 2026-07-15T06:14:03+00:00
 
 ## Tracks
 
@@ -42,14 +42,14 @@ Decision: DOWNGRADE
 - Sample data: fixtures/qwen-cloud-packet.md, reports/openai-build-week-gpt56-payload.json, reports/openai-build-week-submitops-scout.json, reports/openai-build-week-submitops-scout.md
 - Video URLs: missing
 - Video assets: missing
-- Public URLs found: 7
+- Public URLs found: 9
 
 ## Readiness Checks
 
 - PASS: official rules captured - Packet records Official Rules source state.
 - PASS: README present - README.md
 - PASS: license present - LICENSE
-- MISSING: public repository URL present - BLOCKED: public repository URL not verified yet
+- PASS: public repository URL present - https://github.com/memekr/submitops-scout
 - PASS: setup path present - README.md, src/submitops_scout/core.py, src/submitops_scout/gpt56_adapter.py, submission/openai-build-week-devpost-field-map.md, submission/openai-build-week-draft.md
 - PASS: tests present - 2 test files
 - PASS: sample data present - fixtures/qwen-cloud-packet.md, reports/openai-build-week-gpt56-payload.json, reports/openai-build-week-submitops-scout.json, reports/openai-build-week-submitops-scout.md
@@ -61,7 +61,6 @@ Decision: DOWNGRADE
 
 ## Blockers
 
-- public repository URL present
 - /feedback Session ID present
 - public demo video present
 

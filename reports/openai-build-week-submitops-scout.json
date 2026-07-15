@@ -58,7 +58,7 @@
       "what_it_does": "It reads public competition pages, scans local repo evidence, maps judging criteria to proof, drafts submission copy, and refuses unsupported claims until a human supplies missing account, eligibility, legal, payment, or publication facts.",
       "why_it_can_win": "It is a practical Codex-native developer tool with a live deadline use case. Instead of only generating code, it helps teams ship truthful, judge-ready submissions under pressure."
     },
-    "captured_at": "2026-07-15T06:12:34+00:00"
+    "captured_at": "2026-07-15T06:14:03+00:00"
   },
   "evidence": {
     "root": ".",
@@ -89,13 +89,15 @@
     "video_urls": [],
     "deck_assets": [],
     "public_urls": [
+      "https://github.com/memekr/submitops-scout",
       "https://openai.com/build-week/",
       "https://openai.devpost.com/",
       "https://openai.devpost.com/details/faqs",
       "https://developers.openai.com/api/docs/guides/text",
       "https://qwencloud-hackathon.devpost.com/",
       "https://qwencloud-hackathon.devpost.com/rules",
-      "https://www.qwencloud.com/challenge/hackathon"
+      "https://www.qwencloud.com/challenge/hackathon",
+      "https://github.com/memekr/submitops-scout`"
     ],
     "codex_mentions": [
       "README.md",
@@ -134,8 +136,8 @@
     },
     {
       "name": "public repository URL present",
-      "status": "missing",
-      "detail": "BLOCKED: public repository URL not verified yet"
+      "status": "pass",
+      "detail": "https://github.com/memekr/submitops-scout"
     },
     {
       "name": "setup path present",
@@ -180,9 +182,8 @@
   ],
   "decision": "downgrade",
   "blockers": [
-    "public repository URL present",
     "/feedback Session ID present",
     "public demo video present"
   ],
-  "generated_at": "2026-07-15T06:12:34+00:00"
+  "generated_at": "2026-07-15T06:14:03+00:00"
 }
