@@ -9,6 +9,7 @@ Created: 2026-07-15 09:08 KST.
 - Deadline: July 21, 2026, 5:00 PM PDT; July 22, 2026, 9:00 AM KST.
 - Project: SubmitOps Scout: Codex-powered submission command center.
 - Public repository: https://github.com/memekr/submitops-scout
+- Public demo video: https://youtu.be/6PCzqJu1dRU
 
 ## Current State
 
@@ -25,7 +26,6 @@ Implemented local CLI baseline:
 
 Do not claim final Build Week eligibility yet:
 
-- no public YouTube demo for SubmitOps Scout exists
 - no `/feedback` Session ID has been inserted into final submission materials
 - no live GPT-5.6 review call has been run with verified free credits
 - no Devpost project draft has been created or submitted
@@ -37,6 +37,7 @@ Do not claim final Build Week eligibility yet:
 - Devpost field map: `/Users/mac/hackathon-agent/submitops-scout/submission/openai-build-week-devpost-field-map.md`
 - GPT-5.6 payload: `/Users/mac/hackathon-agent/submitops-scout/reports/openai-build-week-gpt56-payload.json`
 - Qwen fixture: `/Users/mac/hackathon-agent/submitops-scout/fixtures/qwen-cloud-packet.md`
+- Public demo video publication packet: `/Users/mac/hackathon-agent/submitops-scout/submission/openai-build-week-demo-video-publication.md`
 - Public repository: `https://github.com/memekr/submitops-scout`
 
 ## Draft Devpost Copy
@@ -57,4 +58,4 @@ How Codex and GPT-5.6 are used:
 
 ## Next Submission Step
 
-Prepare a short public demo path and insert the `/feedback` Session ID. Do not submit until the final video, `/feedback` Session ID, and GPT-5.6 live evidence are complete.
+Insert the `/feedback` Session ID and run the final Devpost preview. Do not submit until `/feedback` evidence and the live GPT-5.6/no-billing boundary are complete or explicitly downgraded in the final form.

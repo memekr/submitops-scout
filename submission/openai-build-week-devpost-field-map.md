@@ -1,6 +1,6 @@
 # OpenAI Build Week Devpost Field Map
 
-Generated: 2026-07-15T06:14:03+00:00
+Generated: 2026-07-15T12:27:44+00:00
 Status: DRAFT - DO NOT FINAL SUBMIT
 
 ## Source Snapshot
@@ -8,7 +8,7 @@ Status: DRAFT - DO NOT FINAL SUBMIT
 - Event: OpenAI Build Week Packet
 - Event URL: https://openai.devpost.com/
 - Deadline: July 21, 2026, 5:00 PM PT, per Devpost overview copy.
-- Captured at: 2026-07-15T06:14:03+00:00
+- Captured at: 2026-07-15T12:27:44+00:00
 
 ## Core Fields
 
@@ -16,7 +16,7 @@ Status: DRAFT - DO NOT FINAL SUBMIT
 - Category: Developer Tools
 - Short description: SubmitOps Scout helps builders turn a project repository and hackathon rules into a ready-to-submit packet: eligibility gates, proof links, Devpost drafts, demo scripts, validation commands, and blockers.
 - Repository URL: https://github.com/memekr/submitops-scout
-- Demo video URL: BLOCKED: public YouTube demo URL not recorded yet
+- Demo video URL: https://youtu.be/6PCzqJu1dRU
 - /feedback Codex Session ID: BLOCKED: paste /feedback Codex Session ID from primary build thread
 
 ## Project Description
@@ -63,4 +63,3 @@ It is a practical Codex-native developer tool with a live deadline use case. Ins
 ## Current Blockers
 
 - /feedback Session ID present
-- public demo video present

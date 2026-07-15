@@ -30,6 +30,8 @@ It integrates GPT-5.6 through a Responses API review payload.
 Primary /feedback Session ID: sess_123456789abc.
 Demo: https://youtu.be/example
 Repository: https://github.com/memekr/demo
+Mirror: `https://github.com/memekr/demo-mirror`
+OEmbed: 'https://www.youtube.com/oembed?url=https://youtu.be/example&format=json'
 """,
         encoding="utf-8",
     )
@@ -100,6 +102,14 @@ def test_repo_evidence_scan_and_readiness_go(tmp_path: Path) -> None:
 
     assert packet.decision == "go"
     assert not packet.blockers
+    assert "https://github.com/memekr/demo-mirror" in packet.evidence.public_urls
+    assert "https://github.com/memekr/demo-mirror`" not in packet.evidence.public_urls
+    assert "https://www.youtube.com/oembed?url=https://youtu.be/example&format=json" in (
+        packet.evidence.public_urls
+    )
+    assert "https://www.youtube.com/oembed?url=https://youtu.be/example&format=json'" not in (
+        packet.evidence.public_urls
+    )
 
 
 def test_readiness_downgrades_when_external_video_and_feedback_are_missing(tmp_path: Path) -> None:

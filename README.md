@@ -5,6 +5,7 @@ submission packet: source facts, evidence links, readiness checks, downgrade
 notes, and exact external blockers.
 
 Public repository: https://github.com/memekr/submitops-scout
+Public demo video: https://youtu.be/6PCzqJu1dRU
 
 This initial Build Week version is scoped to the OpenAI Build Week requirements:
 
@@ -33,6 +34,19 @@ uv run submitops-scout ../submission-packets/openai-build-week.md . \
 The Devpost field map is intentionally guarded. If public video, repository, or
 `/feedback` evidence is missing, the map labels those fields as blocked rather
 than inventing paste-ready values.
+
+## Demo Video
+
+The public Build Week demo video is published at https://youtu.be/6PCzqJu1dRU.
+The source render can be regenerated locally:
+
+```bash
+bash scripts/render-openai-demo-video.sh
+```
+
+The generated MP4 is intentionally written under `output/`, which is ignored by
+git. The publication evidence and SHA-256 are recorded in
+`submission/openai-build-week-demo-video-publication.md`.
 
 ## Demo Fixture
 

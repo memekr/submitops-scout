@@ -16,6 +16,7 @@ SKIP_DIRS = {
     ".venv",
     "__pycache__",
     "node_modules",
+    "output",
 }
 TEXT_SUFFIXES = {
     ".cfg",
@@ -49,7 +50,7 @@ SECRET_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
         ),
     ),
 )
-URL_PATTERN = re.compile(r"https?://[^\s)>\"]+")
+URL_PATTERN = re.compile(r"https?://[^\s)>\"'`]+")
 FEEDBACK_ID_PATTERN = re.compile(
     r"(?i)(?:/feedback\s+)?session id\s*[:=-]\s*"
     r"(?!pending|placeholder|todo|tbd|missing)([A-Za-z0-9_-]{12,})"
