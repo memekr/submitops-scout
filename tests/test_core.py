@@ -262,6 +262,10 @@ def test_devpost_field_map_uses_draft_answers_and_blockers(tmp_path: Path) -> No
 - Public deadline: July 21, 2026, 5:00 PM PT.
 - Official Rules are posted.
 - Developer Tools
+- Devpost Resources say registered participants can request `$100 Codex credits`.
+- Devpost Resources say these are not API credits.
+- The official Codex credits request form was submitted before the cutoff.
+- Credit approval and delivery are still pending.
 
 Title: `SubmitOps Scout: Codex-Powered Submission Command Center`
 
@@ -285,6 +289,9 @@ What it does:
     assert "fixtures/openai-build-week-packet.md" in field_map
     assert "BLOCKED: public YouTube demo URL not recorded yet" in field_map
     assert "BLOCKED: run live GPT-5.6 review" in field_map
+    assert "Codex Credits State" in field_map
+    assert "Submitted; approval/code delivery pending." in field_map
+    assert "Do not treat this as OpenAI API credit proof." in field_map
     assert "/feedback Session ID present" in field_map
 
 

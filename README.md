@@ -7,6 +7,7 @@ notes, and exact external blockers.
 Public repository: https://github.com/memekr/submitops-scout
 Public demo video: https://youtu.be/6PCzqJu1dRU
 Devpost registration evidence: submission/openai-build-week-devpost-registration-gate.md
+Codex credits request evidence: submission/openai-build-week-codex-credits-request.md
 Proof boundary gate: submission/openai-build-week-proof-boundary-gate.md
 Public URL verification gate: submission/openai-build-week-public-url-verification-gate.md
 
@@ -95,6 +96,14 @@ Project draft creation is blocked at Devpost image reCAPTCHA after `Create
 project`; the visible challenge was `Select all squares with traffic lights`.
 No CAPTCHA bypass, project draft, final submit, payment, identity, tax, or
 banking action was performed.
+
+## Codex Credits Boundary
+
+The official Build Week Resources form for `$100 Codex credits` was submitted
+before the July 17, 2026, 12:00 PM PT cutoff. The confirmation page showed
+`Your response has been recorded`. These are Codex credits, not API credits, and
+approval is still pending until a code or balance appears in the entrant-owned
+OpenAI account.
 
 ## Demo Fixture
 

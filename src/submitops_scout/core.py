@@ -393,7 +393,10 @@ def parse_event_packet(path: Path) -> EventSnapshot:
     accounts = [
         _bullet_text(line)
         for line in lines
-        if any(term in line.lower() for term in ("devpost account", "openai", "codex credits"))
+        if any(
+            term in line.lower()
+            for term in ("devpost account", "openai", "codex credits", "api credits")
+        )
     ]
     notes = [
         _bullet_text(line)
@@ -780,6 +783,29 @@ def _devpost_flow_section(evidence: RepoEvidence) -> str:
 """
 
 
+def _codex_credits_section(event: EventSnapshot) -> str:
+    event_lines = (*event.required_materials, *event.account_requirements, *event.source_notes)
+    credit_lines = [
+        item
+        for item in event_lines
+        if "codex credits" in item.lower() or "api credits" in item.lower()
+    ]
+    if not credit_lines:
+        return ""
+    status = "Submitted; approval/code delivery pending."
+    if not any("submitted" in item.lower() for item in credit_lines):
+        status = "Not yet confirmed in the packet."
+    api_boundary = "Do not treat this as OpenAI API credit proof."
+    if not any("not api" in item.lower() or "api credits" in item.lower() for item in event_lines):
+        api_boundary = "Verify whether the credit source applies before any billable path."
+    return f"""
+## Codex Credits State
+
+- Request status: {status}
+- Boundary: {api_boundary}
+"""
+
+
 def render_devpost_field_map(packet: SubmissionPacket) -> str:
     answers = packet.event.draft_answers
     title = answers.title or packet.event.name.removesuffix(" Packet")
@@ -819,6 +845,7 @@ Status: {paste_status}
 - /feedback Codex Session ID: {_feedback_value(packet.evidence)}
 - Live GPT-5.6 review evidence: {_gpt56_live_value(packet.evidence)}
 {_devpost_flow_section(packet.evidence)}
+{_codex_credits_section(packet.event)}
 {_public_url_verification_section(packet)}
 
 ## Project Description
