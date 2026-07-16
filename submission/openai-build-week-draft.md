@@ -12,6 +12,7 @@ Devpost registration: completed 2026-07-16 03:11 KST under `spdish12`.
 - Public repository: https://github.com/memekr/submitops-scout
 - Public demo video: https://youtu.be/6PCzqJu1dRU
 - Devpost registration evidence: `/Users/mac/hackathon-agent/submitops-scout/submission/openai-build-week-devpost-registration-gate.md`
+- Proof-boundary gate: `/Users/mac/hackathon-agent/submitops-scout/submission/openai-build-week-proof-boundary-gate.md`
 
 ## Current State
 
@@ -19,6 +20,7 @@ Implemented local CLI baseline:
 
 - parses an event packet for source facts, deadline, tracks, required materials, and account notes
 - scans a repository for README, license, setup, tests, sample data, video URLs, public URLs, Codex mentions, GPT-5.6 mentions, `/feedback` Session ID evidence, and secret-risk patterns
+- separates general GPT-5.6 mentions from explicit live GPT-5.6 review evidence
 - emits `go`, `downgrade`, or `stop` readiness decisions
 - generates a GPT-5.6 Responses API review payload without making a network call or reading secrets
 - generates a guarded Devpost field map with blocked placeholders for missing public repo, video, and `/feedback` evidence
@@ -42,6 +44,7 @@ Do not claim final Build Week eligibility yet:
 - Qwen fixture: `/Users/mac/hackathon-agent/submitops-scout/fixtures/qwen-cloud-packet.md`
 - Public demo video publication packet: `/Users/mac/hackathon-agent/submitops-scout/submission/openai-build-week-demo-video-publication.md`
 - Devpost registration gate: `/Users/mac/hackathon-agent/submitops-scout/submission/openai-build-week-devpost-registration-gate.md`
+- Proof-boundary gate: `/Users/mac/hackathon-agent/submitops-scout/submission/openai-build-week-proof-boundary-gate.md`
 - Public repository: `https://github.com/memekr/submitops-scout`
 
 ## Draft Devpost Copy
@@ -62,4 +65,4 @@ How Codex and GPT-5.6 are used:
 
 ## Next Submission Step
 
-Have the entrant complete the Devpost image reCAPTCHA that appears after `Create project`, insert the `/feedback` Session ID, and run the final Devpost preview. Do not submit until `/feedback` evidence and the live GPT-5.6/no-billing boundary are complete or explicitly downgraded in the final form.
+Have the entrant complete the Devpost image reCAPTCHA that appears after `Create project`, insert the official `/feedback` Session ID, capture live GPT-5.6 evidence only after a verified no-billing/free-credit boundary, and run the final Devpost preview. Do not submit until those proof gates are complete or explicitly downgraded in the final form.

@@ -7,6 +7,7 @@ notes, and exact external blockers.
 Public repository: https://github.com/memekr/submitops-scout
 Public demo video: https://youtu.be/6PCzqJu1dRU
 Devpost registration evidence: submission/openai-build-week-devpost-registration-gate.md
+Proof boundary gate: submission/openai-build-week-proof-boundary-gate.md
 
 This initial Build Week version is scoped to the OpenAI Build Week requirements:
 
@@ -67,9 +68,10 @@ useful beyond a toy repository scan.
 ## GPT-5.6 Boundary
 
 `submitops_scout.gpt56_adapter` prepares a Responses API payload for `gpt-5.6`
-submission review. It does not make network calls or read secrets. A later run
-can promote this to live evidence only after `OPENAI_API_KEY`, free credits, and
-no-auto-top-up boundaries are verified.
+submission review. It does not make network calls or read secrets. The readiness
+gate now separates general GPT-5.6 mentions from live review evidence. A later
+run can promote this only after `OPENAI_API_KEY`, free credits, and no-auto-top-up
+boundaries are verified.
 
 Primary source references:
 

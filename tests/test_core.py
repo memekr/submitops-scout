@@ -27,6 +27,7 @@ def _write_project(root: Path) -> None:
 
 Run this project with Codex-built setup instructions.
 It integrates GPT-5.6 through a Responses API review payload.
+Live GPT-5.6 review evidence status: complete; response id resp_123456789abc.
 Primary /feedback Session ID: sess_123456789abc.
 Demo: https://youtu.be/example
 Repository: https://github.com/memekr/demo
@@ -124,8 +125,29 @@ def test_readiness_downgrades_when_external_video_and_feedback_are_missing(tmp_p
     packet = assess_readiness(parse_event_packet(event), scan_repo_evidence(tmp_path))
 
     assert packet.decision == "downgrade"
+    assert "live GPT-5.6 review evidence present" in packet.blockers
     assert "/feedback Session ID present" in packet.blockers
     assert "public demo video present" in packet.blockers
+
+
+def test_blocker_language_does_not_count_as_live_gpt56_evidence(tmp_path: Path) -> None:
+    _write_project(tmp_path)
+    (tmp_path / "README.md").write_text(
+        """# Demo
+
+Usage with Codex and GPT-5.6.
+Do not submit until /feedback evidence and the live GPT-5.6/no-billing boundary are complete.
+No live GPT-5.6 review call has been run with verified free credits.
+""",
+        encoding="utf-8",
+    )
+    event = tmp_path / "event.md"
+    event.write_text("# OpenAI Build Week Packet\n- Official Rules are posted.\n", encoding="utf-8")
+
+    packet = assess_readiness(parse_event_packet(event), scan_repo_evidence(tmp_path))
+
+    assert not packet.evidence.gpt56_live_evidence_paths
+    assert "live GPT-5.6 review evidence present" in packet.blockers
 
 
 def test_devpost_field_map_uses_draft_answers_and_blockers(tmp_path: Path) -> None:
@@ -161,6 +183,7 @@ What it does:
     assert "Project title: SubmitOps Scout: Codex-Powered Submission Command Center" in field_map
     assert "Category: Developer Tools" in field_map
     assert "BLOCKED: public YouTube demo URL not recorded yet" in field_map
+    assert "BLOCKED: run live GPT-5.6 review" in field_map
     assert "/feedback Session ID present" in field_map
 
 

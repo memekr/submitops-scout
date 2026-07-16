@@ -55,6 +55,27 @@ FEEDBACK_ID_PATTERN = re.compile(
     r"(?i)(?:/feedback\s+)?session id\s*[:=-]\s*"
     r"(?!pending|placeholder|todo|tbd|missing)([A-Za-z0-9_-]{12,})"
 )
+GPT56_LIVE_EVIDENCE_PATTERN = re.compile(
+    r"(?i)(?:"
+    r"(?:live\s+)?gpt[- ]?5\.6\s+(?:review|api|responses api|evidence)"
+    r"|(?:live\s+)?(?:review|api|responses api|evidence)\s+.*gpt[- ]?5\.6"
+    r").*(?:complete|completed|pass|passed|captured|response id|resp_[A-Za-z0-9_-]+)"
+)
+BLOCKED_EVIDENCE_TERMS = (
+    "blocked",
+    "do not claim",
+    "do not submit",
+    "does not",
+    "missing",
+    "no live",
+    "not configured",
+    "not run",
+    "only after",
+    "pending",
+    "placeholder",
+    "todo",
+    "without making a network call",
+)
 TRACK_NAMES = (
     "Apps for Your Life",
     "Work and Productivity",
@@ -117,6 +138,7 @@ class RepoEvidence:
     public_urls: tuple[str, ...]
     codex_mentions: tuple[str, ...]
     gpt56_mentions: tuple[str, ...]
+    gpt56_live_evidence_paths: tuple[str, ...]
     feedback_mentions: tuple[str, ...]
     devpost_flow_paths: tuple[str, ...]
     secret_findings: tuple[SecretFinding, ...]
@@ -153,6 +175,7 @@ class _EvidenceCollector:
     video_urls: list[str]
     codex_mentions: list[str]
     gpt56_mentions: list[str]
+    gpt56_live_evidence_paths: list[str]
     feedback_mentions: list[str]
     devpost_flow_paths: list[str]
     secrets: list[SecretFinding]
@@ -187,6 +210,8 @@ class _EvidenceCollector:
             self.codex_mentions.append(rel)
         if "gpt-5.6" in text.lower() or "gpt 5.6" in text.lower():
             self.gpt56_mentions.append(rel)
+        if _has_live_gpt56_evidence(text):
+            self.gpt56_live_evidence_paths.append(rel)
         if FEEDBACK_ID_PATTERN.search(text):
             self.feedback_mentions.append(rel)
         found_urls = URL_PATTERN.findall(text)
@@ -215,6 +240,7 @@ class _EvidenceCollector:
             public_urls=_unique(self.urls)[:40],
             codex_mentions=_unique(self.codex_mentions),
             gpt56_mentions=_unique(self.gpt56_mentions),
+            gpt56_live_evidence_paths=_unique(self.gpt56_live_evidence_paths),
             feedback_mentions=_unique(self.feedback_mentions),
             devpost_flow_paths=_unique(self.devpost_flow_paths),
             secret_findings=tuple(self.secrets),
@@ -235,6 +261,7 @@ def _new_collector() -> _EvidenceCollector:
         video_urls=[],
         codex_mentions=[],
         gpt56_mentions=[],
+        gpt56_live_evidence_paths=[],
         feedback_mentions=[],
         devpost_flow_paths=[],
         secrets=[],
@@ -381,6 +408,16 @@ def _find_secret_lines(rel: str, text: str) -> tuple[SecretFinding, ...]:
     return tuple(findings)
 
 
+def _has_live_gpt56_evidence(text: str) -> bool:
+    for line in text.splitlines():
+        lower = line.lower()
+        if any(term in lower for term in BLOCKED_EVIDENCE_TERMS):
+            continue
+        if GPT56_LIVE_EVIDENCE_PATTERN.search(line):
+            return True
+    return False
+
+
 def scan_repo_evidence(root: Path) -> RepoEvidence:
     collector = _new_collector()
     for path in sorted(root.rglob("*")):
@@ -450,6 +487,11 @@ def assess_readiness(event: EventSnapshot, evidence: RepoEvidence) -> Submission
             "GPT-5.6 evidence present",
             passed=bool(evidence.gpt56_mentions),
             detail=", ".join(evidence.gpt56_mentions[:5]),
+        ),
+        _check(
+            "live GPT-5.6 review evidence present",
+            passed=bool(evidence.gpt56_live_evidence_paths),
+            detail=", ".join(evidence.gpt56_live_evidence_paths[:5]),
         ),
         _check(
             "/feedback Session ID present",
@@ -543,6 +585,12 @@ def _feedback_value(evidence: RepoEvidence) -> str:
     return "BLOCKED: paste /feedback Codex Session ID from primary build thread"
 
 
+def _gpt56_live_value(evidence: RepoEvidence) -> str:
+    if evidence.gpt56_live_evidence_paths:
+        return "Evidence found in " + ", ".join(evidence.gpt56_live_evidence_paths[:3])
+    return "BLOCKED: run live GPT-5.6 review only after verified no-billing/free-credit boundary"
+
+
 def _devpost_flow_section(evidence: RepoEvidence) -> str:
     if not evidence.devpost_flow_paths:
         return ""
@@ -594,6 +642,7 @@ Status: {paste_status}
 - Repository URL: {_repo_url(packet.evidence)}
 - Demo video URL: {_video_url(packet.evidence)}
 - /feedback Codex Session ID: {_feedback_value(packet.evidence)}
+- Live GPT-5.6 review evidence: {_gpt56_live_value(packet.evidence)}
 {_devpost_flow_section(packet.evidence)}
 
 ## Project Description
@@ -606,7 +655,7 @@ Codex was used to build the Python/uv CLI, source packet parser, repository
 evidence scanner, readiness gate, tests, and generated submission artifacts.
 The project includes a GPT-5.6 Responses API review payload generator so a
 verified no-billing live review can check the final packet for unsupported
-claims before Devpost submission.
+claims before Devpost submission. Current live evidence gate: {_gpt56_live_value(packet.evidence)}.
 
 ## Judge Testing Instructions
 
@@ -683,6 +732,7 @@ Decision: {packet.decision.upper()}
 - Video URLs: {", ".join(packet.evidence.video_urls) or "missing"}
 - Video assets: {", ".join(packet.evidence.video_assets) or "missing"}
 - Devpost flow evidence: {", ".join(packet.evidence.devpost_flow_paths) or "missing"}
+- Live GPT-5.6 evidence: {", ".join(packet.evidence.gpt56_live_evidence_paths) or "missing"}
 - Public URLs found: {len(packet.evidence.public_urls)}
 
 ## Readiness Checks
