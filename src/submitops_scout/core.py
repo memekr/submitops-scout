@@ -71,6 +71,10 @@ BLOCKED_EVIDENCE_TERMS = (
     "does not",
     "missing",
     "no live",
+    "has not",
+    "not been",
+    "not captured",
+    "not complete",
     "not configured",
     "not run",
     "only after",
@@ -833,7 +837,7 @@ claims before Devpost submission. Current live evidence gate: {_gpt56_live_value
 
 ```bash
 uv sync --all-groups
-uv run submitops-scout ../submission-packets/openai-build-week.md . \\
+uv run submitops-scout fixtures/openai-build-week-packet.md . \\
   --out reports/openai-build-week-submitops-scout.md \\
   --json reports/openai-build-week-submitops-scout.json \\
   --devpost-map submission/openai-build-week-devpost-field-map.md \\

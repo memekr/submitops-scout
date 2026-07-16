@@ -237,6 +237,7 @@ def test_blocker_language_does_not_count_as_live_gpt56_evidence(tmp_path: Path) 
 Usage with Codex and GPT-5.6.
 Do not submit until /feedback evidence and the live GPT-5.6/no-billing boundary are complete.
 No live GPT-5.6 review call has been run with verified free credits.
+Live GPT-5.6 review evidence has not been captured under a no-billing boundary.
 """,
         encoding="utf-8",
     )
@@ -281,6 +282,7 @@ What it does:
     assert "Status: DRAFT - DO NOT FINAL SUBMIT" in field_map
     assert "Project title: SubmitOps Scout: Codex-Powered Submission Command Center" in field_map
     assert "Category: Developer Tools" in field_map
+    assert "fixtures/openai-build-week-packet.md" in field_map
     assert "BLOCKED: public YouTube demo URL not recorded yet" in field_map
     assert "BLOCKED: run live GPT-5.6 review" in field_map
     assert "/feedback Session ID present" in field_map

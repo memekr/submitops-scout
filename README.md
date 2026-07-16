@@ -27,7 +27,7 @@ eligibility fact unless it finds supporting evidence. Missing proof becomes a
 ## Usage
 
 ```bash
-uv run submitops-scout ../submission-packets/openai-build-week.md . \
+uv run submitops-scout fixtures/openai-build-week-packet.md . \
   --out reports/openai-build-week-submitops-scout.md \
   --json reports/openai-build-week-submitops-scout.json \
   --devpost-map submission/openai-build-week-devpost-field-map.md \
@@ -39,6 +39,29 @@ uv run submitops-scout ../submission-packets/openai-build-week.md . \
   --require-public-url https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-proof-boundary-gate.md \
   --forbid-public-url https://raw.githubusercontent.com/memekr/submitops-scout/main/.env
 ```
+
+## Judge Quickstart
+
+Supported platforms: macOS, Linux, or Windows with Python 3.12 and `uv`.
+
+```bash
+git clone https://github.com/memekr/submitops-scout.git
+cd submitops-scout
+uv sync --all-groups
+uv run submitops-scout fixtures/openai-build-week-packet.md . \
+  --out reports/openai-build-week-submitops-scout.md \
+  --json reports/openai-build-week-submitops-scout.json \
+  --devpost-map submission/openai-build-week-devpost-field-map.md \
+  --gpt56-payload reports/openai-build-week-gpt56-payload.json \
+  --gpt56-status
+uv run pytest
+```
+
+The command uses the in-repository `fixtures/openai-build-week-packet.md`, so a
+judge can test the core workflow from a fresh clone without access to this local
+workspace. The GPT-5.6 step writes a review payload and prints connector status;
+it does not read secrets or call the network unless the operator chooses to run a
+separate live review.
 
 The Devpost field map is intentionally guarded. If public video, repository, or
 `/feedback` evidence is missing, the map labels those fields as blocked rather

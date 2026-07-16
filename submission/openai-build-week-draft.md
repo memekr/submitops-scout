@@ -41,10 +41,12 @@ Do not claim final Build Week eligibility yet:
 - JSON report: `/Users/mac/hackathon-agent/submitops-scout/reports/openai-build-week-submitops-scout.json`
 - Devpost field map: `/Users/mac/hackathon-agent/submitops-scout/submission/openai-build-week-devpost-field-map.md`
 - GPT-5.6 payload: `/Users/mac/hackathon-agent/submitops-scout/reports/openai-build-week-gpt56-payload.json`
+- In-repository judge fixture: `/Users/mac/hackathon-agent/submitops-scout/fixtures/openai-build-week-packet.md`
 - Qwen fixture: `/Users/mac/hackathon-agent/submitops-scout/fixtures/qwen-cloud-packet.md`
 - Public demo video publication packet: `/Users/mac/hackathon-agent/submitops-scout/submission/openai-build-week-demo-video-publication.md`
 - Devpost registration gate: `/Users/mac/hackathon-agent/submitops-scout/submission/openai-build-week-devpost-registration-gate.md`
 - Proof-boundary gate: `/Users/mac/hackathon-agent/submitops-scout/submission/openai-build-week-proof-boundary-gate.md`
+- Judge quickstart gate: `/Users/mac/hackathon-agent/submitops-scout/submission/openai-build-week-judge-quickstart-gate.md`
 - Public repository: `https://github.com/memekr/submitops-scout`
 
 ## Draft Devpost Copy

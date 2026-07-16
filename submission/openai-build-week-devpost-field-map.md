@@ -1,20 +1,20 @@
 # OpenAI Build Week Devpost Field Map
 
-Generated: 2026-07-16T06:22:18+00:00
+Generated: 2026-07-16T12:15:09+00:00
 Status: DRAFT - DO NOT FINAL SUBMIT
 
 ## Source Snapshot
 
 - Event: OpenAI Build Week Packet
 - Event URL: https://openai.devpost.com/
-- Deadline: July 21, 2026, 5:00 PM PT, per Devpost overview copy.
-- Captured at: 2026-07-16T06:22:16+00:00
+- Deadline: July 21, 2026, 5:00 PM PT, per Devpost rules.
+- Captured at: 2026-07-16T12:15:07+00:00
 
 ## Core Fields
 
 - Project title: SubmitOps Scout: Codex-Powered Submission Command Center
 - Category: Developer Tools
-- Short description: SubmitOps Scout helps builders turn a project repository and hackathon rules into a ready-to-submit packet: eligibility gates, proof links, Devpost drafts, demo scripts, validation commands, and blockers.
+- Short description: SubmitOps Scout helps builders turn hackathon rules and a project repository into a ready-to-submit packet: evidence scan, eligibility gates, proof links, Devpost copy, validation commands, and exact blockers.
 - Repository URL: https://github.com/memekr/submitops-scout
 - Demo video URL: https://youtu.be/6PCzqJu1dRU
 - /feedback Codex Session ID: BLOCKED: paste /feedback Codex Session ID from primary build thread
@@ -40,7 +40,7 @@ Status: DRAFT - DO NOT FINAL SUBMIT
 
 ## Project Description
 
-It reads public competition pages, scans local repo evidence, maps judging criteria to proof, drafts submission copy, and refuses unsupported claims until a human supplies missing account, eligibility, legal, payment, or publication facts.
+The tool parses competition source facts, scans a local project for submission evidence, maps requirements to proof, generates a readiness packet, and refuses unsupported claims. Missing public video, missing `/feedback` Session ID, secret findings, or unreviewed rules become explicit `downgrade` or `stop` statuses instead of optimistic submission copy.
 
 ## Codex and GPT-5.6 Usage
 
@@ -54,7 +54,7 @@ claims before Devpost submission. Current live evidence gate: BLOCKED: run live 
 
 ```bash
 uv sync --all-groups
-uv run submitops-scout ../submission-packets/openai-build-week.md . \
+uv run submitops-scout fixtures/openai-build-week-packet.md . \
   --out reports/openai-build-week-submitops-scout.md \
   --json reports/openai-build-week-submitops-scout.json \
   --devpost-map submission/openai-build-week-devpost-field-map.md \
