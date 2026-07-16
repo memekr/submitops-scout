@@ -8,7 +8,11 @@
       "https://openai.devpost.com/",
       "https://openai.devpost.com/rules",
       "https://youtu.be/6PCzqJu1dRU",
-      "https://github.com/memekr/submitops-scout"
+      "https://github.com/memekr/submitops-scout",
+      "https://raw.githubusercontent.com/memekr/submitops-scout/main/README.md",
+      "https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-devpost-field-map.md",
+      "https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-proof-boundary-gate.md",
+      "https://raw.githubusercontent.com/memekr/submitops-scout/main/.env"
     ],
     "tracks": [
       "Apps for Your Life",
@@ -21,7 +25,7 @@
       "Devpost says builders should create a working project using Codex with GPT-5.6 and can enter one of four tracks: Apps for Your Life, Work and Productivity, Developer Tools, or Education",
       "Required submission materials now include a chosen category, project description, public YouTube demo video under three minutes with voiceover covering how Codex and GPT-5.6 were used, repository URL with README/setup/sample data, and a `/feedback` Codex Session ID from the primary build thread",
       "The theme fits this workspace and the user's Codex-heavy workflow",
-      "OpenAI still needs a `/feedback` Session ID and live GPT-5.6 proof before Devpost final submit; the public repository, public YouTube demo URL, Devpost event registration, and proof-boundary gate are now verified locally",
+      "OpenAI still needs a `/feedback` Session ID and live GPT-5.6 proof before Devpost final submit; the public repository, public YouTube demo URL, Devpost event registration, proof-boundary gate, and public URL verification gate are now verified locally",
       "OpenAI/Codex access",
       "OpenAI/Codex credits are available only through the event resource flow and must remain prepaid/no-auto-top-up before any live GPT-5.6 evidence run",
       "Working project built with Codex and GPT-5.6",
@@ -36,13 +40,13 @@
       "https://openai.devpost.com/",
       "https://openai.devpost.com/rules",
       "OpenAI's Build Week page says the challenge opens July 13, 2026, submissions are due July 21, 2026, judging runs July 22 to August 7, and winners are announced August 12",
-      "Devpost now shows OpenAI Build Week running online through July 21, 2026, 5:00 PM PDT, with $100,000 in cash prizes and 19,627 participants on public surfaces during this recheck",
-      "OpenAI still needs a `/feedback` Session ID and live GPT-5.6 proof before Devpost final submit; the public repository, public YouTube demo URL, Devpost event registration, and proof-boundary gate are now verified locally",
+      "Devpost now shows OpenAI Build Week running online through July 21, 2026, 5:00 PM PDT, with $100,000 in cash prizes and 22,514 participants on public surfaces during this recheck",
+      "OpenAI still needs a `/feedback` Session ID and live GPT-5.6 proof before Devpost final submit; the public repository, public YouTube demo URL, Devpost event registration, proof-boundary gate, and public URL verification gate are now verified locally",
       "Event URL: https://openai.devpost.com/"
     ],
     "source_notes": [
       "https://openai.devpost.com/rules",
-      "Devpost now shows OpenAI Build Week running online through July 21, 2026, 5:00 PM PDT, with $100,000 in cash prizes and 19,627 participants on public surfaces during this recheck",
+      "Devpost now shows OpenAI Build Week running online through July 21, 2026, 5:00 PM PDT, with $100,000 in cash prizes and 22,514 participants on public surfaces during this recheck",
       "Devpost Official Rules are now posted; public rule/search surfaces list the submission period as July 13, 2026, 9:00 AM Pacific Time through July 21, 2026, 5:00 PM Pacific Time",
       "## Deadline and Timezone",
       "Public deadline: July 21, 2026, 5:00 PM PT, per Devpost overview copy",
@@ -60,7 +64,7 @@
       "what_it_does": "It reads public competition pages, scans local repo evidence, maps judging criteria to proof, drafts submission copy, and refuses unsupported claims until a human supplies missing account, eligibility, legal, payment, or publication facts.",
       "why_it_can_win": "It is a practical Codex-native developer tool with a live deadline use case. Instead of only generating code, it helps teams ship truthful, judge-ready submissions under pressure."
     },
-    "captured_at": "2026-07-16T00:16:16+00:00"
+    "captured_at": "2026-07-16T06:22:16+00:00"
   },
   "evidence": {
     "root": ".",
@@ -76,10 +80,10 @@
       "src/submitops_scout/core.py",
       "src/submitops_scout/gpt56_adapter.py",
       "submission/openai-build-week-demo-video-publication.md",
-      "submission/openai-build-week-devpost-field-map.md",
       "submission/openai-build-week-devpost-registration-gate.md",
       "submission/openai-build-week-draft.md",
-      "submission/openai-build-week-proof-boundary-gate.md"
+      "submission/openai-build-week-proof-boundary-gate.md",
+      "submission/openai-build-week-public-url-verification-gate.md"
     ],
     "test_files": [
       "tests/__init__.py",
@@ -100,6 +104,10 @@
     "public_urls": [
       "https://github.com/memekr/submitops-scout",
       "https://youtu.be/6PCzqJu1dRU",
+      "https://raw.githubusercontent.com/memekr/submitops-scout/main/README.md",
+      "https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-devpost-field-map.md",
+      "https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-proof-boundary-gate.md",
+      "https://raw.githubusercontent.com/memekr/submitops-scout/main/.env",
       "https://openai.com/build-week/",
       "https://openai.devpost.com/",
       "https://openai.devpost.com/details/faqs",
@@ -116,10 +124,10 @@
       "scripts/render-openai-demo-video.sh",
       "src/submitops_scout/core.py",
       "submission/openai-build-week-demo-video-publication.md",
-      "submission/openai-build-week-devpost-field-map.md",
       "submission/openai-build-week-devpost-registration-gate.md",
       "submission/openai-build-week-draft.md",
-      "submission/openai-build-week-proof-boundary-gate.md"
+      "submission/openai-build-week-proof-boundary-gate.md",
+      "submission/openai-build-week-public-url-verification-gate.md"
     ],
     "gpt56_mentions": [
       "README.md",
@@ -128,10 +136,10 @@
       "src/submitops_scout/core.py",
       "src/submitops_scout/gpt56_adapter.py",
       "submission/openai-build-week-demo-video-publication.md",
-      "submission/openai-build-week-devpost-field-map.md",
       "submission/openai-build-week-devpost-registration-gate.md",
       "submission/openai-build-week-draft.md",
-      "submission/openai-build-week-proof-boundary-gate.md"
+      "submission/openai-build-week-proof-boundary-gate.md",
+      "submission/openai-build-week-public-url-verification-gate.md"
     ],
     "gpt56_live_evidence_paths": [],
     "feedback_mentions": [],
@@ -206,6 +214,36 @@
       "name": "secret scan clear",
       "status": "pass",
       "detail": "0 findings"
+    },
+    {
+      "name": "public URL reachable: https://github.com/memekr/submitops-scout",
+      "status": "pass",
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "public URL reachable: https://www.youtube.com/oembed?url=https://youtu.be/6PCzqJu1dRU&format=json",
+      "status": "pass",
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "public URL reachable: https://raw.githubusercontent.com/memekr/submitops-scout/main/README.md",
+      "status": "pass",
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "public URL reachable: https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-devpost-field-map.md",
+      "status": "pass",
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "public URL reachable: https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-proof-boundary-gate.md",
+      "status": "pass",
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "public URL absent: https://raw.githubusercontent.com/memekr/submitops-scout/main/.env",
+      "status": "pass",
+      "detail": "HTTP 404"
     }
   ],
   "decision": "downgrade",
@@ -213,5 +251,49 @@
     "live GPT-5.6 review evidence present",
     "/feedback Session ID present"
   ],
-  "generated_at": "2026-07-16T00:16:16+00:00"
+  "generated_at": "2026-07-16T06:22:18+00:00",
+  "public_url_checks": [
+    {
+      "url": "https://github.com/memekr/submitops-scout",
+      "expectation": "reachable",
+      "status": "pass",
+      "http_status": 200,
+      "detail": "HTTP 200"
+    },
+    {
+      "url": "https://www.youtube.com/oembed?url=https://youtu.be/6PCzqJu1dRU&format=json",
+      "expectation": "reachable",
+      "status": "pass",
+      "http_status": 200,
+      "detail": "HTTP 200"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/memekr/submitops-scout/main/README.md",
+      "expectation": "reachable",
+      "status": "pass",
+      "http_status": 200,
+      "detail": "HTTP 200"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-devpost-field-map.md",
+      "expectation": "reachable",
+      "status": "pass",
+      "http_status": 200,
+      "detail": "HTTP 200"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-proof-boundary-gate.md",
+      "expectation": "reachable",
+      "status": "pass",
+      "http_status": 200,
+      "detail": "HTTP 200"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/memekr/submitops-scout/main/.env",
+      "expectation": "absent",
+      "status": "pass",
+      "http_status": 404,
+      "detail": "HTTP 404"
+    }
+  ]
 }

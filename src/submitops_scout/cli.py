@@ -7,6 +7,7 @@ from submitops_scout.core import (
     assess_readiness,
     parse_event_packet,
     scan_repo_evidence,
+    verify_public_urls,
     write_devpost_field_map,
     write_packet,
 )
@@ -47,12 +48,35 @@ def build_parser() -> ArgumentParser:
         action="store_true",
         help="Print GPT-5.6 connector status without making a network request.",
     )
+    parser.add_argument(
+        "--verify-public-urls",
+        action="store_true",
+        help="Verify discovered repository and demo video URLs with HTTP checks.",
+    )
+    parser.add_argument(
+        "--require-public-url",
+        action="append",
+        default=[],
+        help="Additional public URL that must return an HTTP 2xx/3xx status.",
+    )
+    parser.add_argument(
+        "--forbid-public-url",
+        action="append",
+        default=[],
+        help="Sensitive URL that must return HTTP 404 or 410, such as a raw .env path.",
+    )
     return parser
 
 
 def main() -> None:
     args = build_parser().parse_args()
     packet = assess_readiness(parse_event_packet(args.event_packet), scan_repo_evidence(args.repo))
+    if args.verify_public_urls:
+        packet = verify_public_urls(
+            packet,
+            required_urls=tuple(args.require_public_url),
+            absent_urls=tuple(args.forbid_public_url),
+        )
     write_packet(packet, args.out, args.json)
     if args.devpost_map:
         write_devpost_field_map(packet, args.devpost_map)

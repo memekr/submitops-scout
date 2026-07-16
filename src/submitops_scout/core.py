@@ -6,6 +6,7 @@ from dataclasses import asdict, dataclass
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
+from urllib import error, parse, request
 
 SKIP_DIRS = {
     ".git",
@@ -37,6 +38,7 @@ TEXT_SUFFIXES = {
 TEXT_FILENAMES = {"LICENSE", "NOTICE", "Dockerfile", "Makefile"}
 MAX_TEXT_BYTES = 1_000_000
 SUBMISSION_EVIDENCE_TEXT_SKIP_PREFIXES = ("reports/", "tests/")
+SUBMISSION_EVIDENCE_TEXT_SKIP_FRAGMENTS = ("devpost-field-map",)
 VIDEO_SUFFIXES = {".mp4", ".mov", ".webm"}
 DECK_SUFFIXES = {".ppt", ".pptx", ".pdf"}
 SAMPLE_SUFFIXES = {".csv", ".json", ".jsonl", ".md", ".tsv"}
@@ -51,6 +53,7 @@ SECRET_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
     ),
 )
 URL_PATTERN = re.compile(r"https?://[^\s)>\"'`]+")
+URL_TRAILING_PUNCTUATION = ".,:;"
 FEEDBACK_ID_PATTERN = re.compile(
     r"(?i)(?:/feedback\s+)?session id\s*[:=-]\s*"
     r"(?!pending|placeholder|todo|tbd|missing)([A-Za-z0-9_-]{12,})"
@@ -93,6 +96,10 @@ REQUIRED_KEYWORDS = (
     "Codex",
     "GPT-5.6",
 )
+HTTP_OK_MIN = 200
+HTTP_REDIRECT_MAX_EXCLUSIVE = 400
+HTTP_NOT_FOUND = 404
+HTTP_GONE = 410
 
 
 @dataclass(frozen=True)
@@ -153,6 +160,15 @@ class ReadinessCheck:
 
 
 @dataclass(frozen=True)
+class PublicUrlCheck:
+    url: str
+    expectation: str
+    status: str
+    http_status: int | None
+    detail: str
+
+
+@dataclass(frozen=True)
 class SubmissionPacket:
     event: EventSnapshot
     evidence: RepoEvidence
@@ -160,6 +176,7 @@ class SubmissionPacket:
     decision: str
     blockers: tuple[str, ...]
     generated_at: str
+    public_url_checks: tuple[PublicUrlCheck, ...] = ()
 
 
 @dataclass
@@ -214,7 +231,11 @@ class _EvidenceCollector:
             self.gpt56_live_evidence_paths.append(rel)
         if FEEDBACK_ID_PATTERN.search(text):
             self.feedback_mentions.append(rel)
-        found_urls = URL_PATTERN.findall(text)
+        found_urls = [
+            clean_url
+            for url in URL_PATTERN.findall(text)
+            if _is_usable_public_url(clean_url := _clean_extracted_url(url))
+        ]
         self.urls.extend(found_urls)
         self.video_urls.extend(
             url
@@ -342,7 +363,13 @@ def parse_event_packet(path: Path) -> EventSnapshot:
         (line.lstrip("# ").strip() for line in lines if line.startswith("# ")),
         path.stem,
     )
-    urls = _unique(URL_PATTERN.findall(text))
+    urls = _unique(
+        [
+            clean_url
+            for url in URL_PATTERN.findall(text)
+            if _is_usable_public_url(clean_url := _clean_extracted_url(url))
+        ],
+    )
     event_url = next((url for url in urls if "devpost.com" in url), urls[0] if urls else "")
     deadline = ""
     for line in lines:
@@ -418,6 +445,20 @@ def _has_live_gpt56_evidence(text: str) -> bool:
     return False
 
 
+def _is_usable_public_url(url: str) -> bool:
+    if "{" in url or "}" in url:
+        return False
+    parsed = parse.urlparse(url)
+    if parsed.scheme not in {"http", "https"} or not parsed.netloc:
+        return False
+    query = parse.parse_qs(parsed.query, keep_blank_values=True)
+    return not any(key == "url" and values == [""] for key, values in query.items())
+
+
+def _clean_extracted_url(url: str) -> str:
+    return url.strip().rstrip(URL_TRAILING_PUNCTUATION)
+
+
 def scan_repo_evidence(root: Path) -> RepoEvidence:
     collector = _new_collector()
     for path in sorted(root.rglob("*")):
@@ -427,7 +468,9 @@ def scan_repo_evidence(root: Path) -> RepoEvidence:
         collector.add_path(path, rel)
         if not _is_scannable(path):
             continue
-        if rel.startswith(SUBMISSION_EVIDENCE_TEXT_SKIP_PREFIXES):
+        if rel.startswith(SUBMISSION_EVIDENCE_TEXT_SKIP_PREFIXES) or any(
+            fragment in rel.lower() for fragment in SUBMISSION_EVIDENCE_TEXT_SKIP_FRAGMENTS
+        ):
             continue
         text = _read_text(path)
         if not text:
@@ -526,6 +569,120 @@ def assess_readiness(event: EventSnapshot, evidence: RepoEvidence) -> Submission
     )
 
 
+def _video_oembed_url(url: str) -> str:
+    lower = url.lower()
+    if "youtube.com/oembed" in lower or "vimeo.com/api/oembed" in lower:
+        return url
+    if "youtu.be/" in lower or "youtube.com/watch" in lower:
+        encoded_url = parse.quote(url, safe=":/")
+        return f"https://www.youtube.com/oembed?url={encoded_url}&format=json"
+    if "vimeo.com/" in lower:
+        return "https://vimeo.com/api/oembed.json?url=" + parse.quote(url, safe=":/")
+    return url
+
+
+def _verification_targets(
+    packet: SubmissionPacket,
+    required_urls: tuple[str, ...],
+) -> tuple[str, ...]:
+    targets: list[str] = []
+    repo = _repo_url(packet.evidence)
+    if repo.startswith("http"):
+        targets.append(repo)
+    targets.extend(_video_oembed_url(url) for url in packet.evidence.video_urls)
+    targets.extend(required_urls)
+    return _unique(targets)
+
+
+def _is_http_url(url: str) -> bool:
+    return parse.urlparse(url).scheme in {"http", "https"}
+
+
+def _fetch_status(url: str, timeout_seconds: float) -> tuple[int | None, str]:
+    if not _is_http_url(url):
+        return None, "unsupported URL scheme"
+    req = request.Request(  # noqa: S310
+        url,
+        method="GET",
+        headers={"User-Agent": "submitops-scout/0.1 public-url-verifier"},
+    )
+    try:
+        with request.urlopen(req, timeout=timeout_seconds) as response:  # noqa: S310
+            response.read(1)
+            return response.status, f"HTTP {response.status}"
+    except error.HTTPError as exc:
+        return exc.code, f"HTTP {exc.code}"
+    except error.URLError as exc:
+        return None, f"{exc.__class__.__name__}: {exc.reason}"
+    except TimeoutError:
+        return None, "TimeoutError"
+
+
+def _verify_required_url(url: str, timeout_seconds: float) -> PublicUrlCheck:
+    status_code, detail = _fetch_status(url, timeout_seconds)
+    passed = (
+        status_code is not None
+        and HTTP_OK_MIN <= status_code < HTTP_REDIRECT_MAX_EXCLUSIVE
+    )
+    return PublicUrlCheck(
+        url=url,
+        expectation="reachable",
+        status="pass" if passed else "missing",
+        http_status=status_code,
+        detail=detail,
+    )
+
+
+def _verify_absent_url(url: str, timeout_seconds: float) -> PublicUrlCheck:
+    status_code, detail = _fetch_status(url, timeout_seconds)
+    passed = status_code in {HTTP_NOT_FOUND, HTTP_GONE}
+    return PublicUrlCheck(
+        url=url,
+        expectation="absent",
+        status="pass" if passed else "stop",
+        http_status=status_code,
+        detail=detail,
+    )
+
+
+def verify_public_urls(
+    packet: SubmissionPacket,
+    *,
+    required_urls: tuple[str, ...] = (),
+    absent_urls: tuple[str, ...] = (),
+    timeout_seconds: float = 10.0,
+) -> SubmissionPacket:
+    url_checks = tuple(
+        _verify_required_url(url, timeout_seconds)
+        for url in _verification_targets(packet, required_urls)
+    ) + tuple(_verify_absent_url(url, timeout_seconds) for url in _unique(list(absent_urls)))
+    url_readiness_checks = tuple(
+        ReadinessCheck(
+            name=f"public URL {check.expectation}: {check.url}",
+            status="pass" if check.status == "pass" else "missing",
+            detail=check.detail,
+        )
+        for check in url_checks
+    )
+    checks = packet.checks + url_readiness_checks
+    blockers = tuple(check.name for check in checks if check.status != "pass")
+    if any(check.status == "stop" for check in url_checks) or packet.decision == "stop":
+        decision = "stop"
+    elif blockers:
+        decision = "downgrade"
+    else:
+        decision = "go"
+    return SubmissionPacket(
+        event=packet.event,
+        evidence=packet.evidence,
+        checks=checks,
+        decision=decision,
+        blockers=blockers,
+        generated_at=_now_iso(),
+        public_url_checks=url_checks,
+    )
+
+
 def packet_to_dict(packet: SubmissionPacket) -> dict[str, Any]:
     return asdict(packet)
 
@@ -591,6 +748,20 @@ def _gpt56_live_value(evidence: RepoEvidence) -> str:
     return "BLOCKED: run live GPT-5.6 review only after verified no-billing/free-credit boundary"
 
 
+def _public_url_verification_section(packet: SubmissionPacket) -> str:
+    if not packet.public_url_checks:
+        return ""
+    rows = "\n".join(
+        f"- {check.status.upper()}: {check.expectation} {check.url} - {check.detail}"
+        for check in packet.public_url_checks
+    )
+    return f"""
+## Public URL Verification
+
+{rows}
+"""
+
+
 def _devpost_flow_section(evidence: RepoEvidence) -> str:
     if not evidence.devpost_flow_paths:
         return ""
@@ -644,6 +815,7 @@ Status: {paste_status}
 - /feedback Codex Session ID: {_feedback_value(packet.evidence)}
 - Live GPT-5.6 review evidence: {_gpt56_live_value(packet.evidence)}
 {_devpost_flow_section(packet.evidence)}
+{_public_url_verification_section(packet)}
 
 ## Project Description
 
@@ -734,6 +906,7 @@ Decision: {packet.decision.upper()}
 - Devpost flow evidence: {", ".join(packet.evidence.devpost_flow_paths) or "missing"}
 - Live GPT-5.6 evidence: {", ".join(packet.evidence.gpt56_live_evidence_paths) or "missing"}
 - Public URLs found: {len(packet.evidence.public_urls)}
+{_public_url_verification_section(packet)}
 
 ## Readiness Checks
 

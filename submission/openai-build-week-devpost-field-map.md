@@ -1,6 +1,6 @@
 # OpenAI Build Week Devpost Field Map
 
-Generated: 2026-07-16T00:16:16+00:00
+Generated: 2026-07-16T06:22:18+00:00
 Status: DRAFT - DO NOT FINAL SUBMIT
 
 ## Source Snapshot
@@ -8,7 +8,7 @@ Status: DRAFT - DO NOT FINAL SUBMIT
 - Event: OpenAI Build Week Packet
 - Event URL: https://openai.devpost.com/
 - Deadline: July 21, 2026, 5:00 PM PT, per Devpost overview copy.
-- Captured at: 2026-07-16T00:16:16+00:00
+- Captured at: 2026-07-16T06:22:16+00:00
 
 ## Core Fields
 
@@ -26,6 +26,16 @@ Status: DRAFT - DO NOT FINAL SUBMIT
 - Project draft creation: BLOCKED by Devpost image reCAPTCHA after `Create project`;
   do not create final submission claims until the entrant completes the visible
   CAPTCHA and the draft preview is checked.
+
+
+## Public URL Verification
+
+- PASS: reachable https://github.com/memekr/submitops-scout - HTTP 200
+- PASS: reachable https://www.youtube.com/oembed?url=https://youtu.be/6PCzqJu1dRU&format=json - HTTP 200
+- PASS: reachable https://raw.githubusercontent.com/memekr/submitops-scout/main/README.md - HTTP 200
+- PASS: reachable https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-devpost-field-map.md - HTTP 200
+- PASS: reachable https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-proof-boundary-gate.md - HTTP 200
+- PASS: absent https://raw.githubusercontent.com/memekr/submitops-scout/main/.env - HTTP 404
 
 
 ## Project Description

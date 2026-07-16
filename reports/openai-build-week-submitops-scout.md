@@ -1,6 +1,6 @@
 # SubmitOps Scout Packet
 
-Generated: 2026-07-16T00:16:16+00:00
+Generated: 2026-07-16T06:22:18+00:00
 Decision: DOWNGRADE
 
 ## Event Snapshot
@@ -8,7 +8,7 @@ Decision: DOWNGRADE
 - Event: OpenAI Build Week Packet
 - URL: https://openai.devpost.com/
 - Deadline: July 21, 2026, 5:00 PM PT, per Devpost overview copy.
-- Captured at: 2026-07-16T00:16:16+00:00
+- Captured at: 2026-07-16T06:22:16+00:00
 
 ## Tracks
 
@@ -23,7 +23,7 @@ Decision: DOWNGRADE
 - Devpost says builders should create a working project using Codex with GPT-5.6 and can enter one of four tracks: Apps for Your Life, Work and Productivity, Developer Tools, or Education
 - Required submission materials now include a chosen category, project description, public YouTube demo video under three minutes with voiceover covering how Codex and GPT-5.6 were used, repository URL with README/setup/sample data, and a `/feedback` Codex Session ID from the primary build thread
 - The theme fits this workspace and the user's Codex-heavy workflow
-- OpenAI still needs a `/feedback` Session ID and live GPT-5.6 proof before Devpost final submit; the public repository, public YouTube demo URL, Devpost event registration, and proof-boundary gate are now verified locally
+- OpenAI still needs a `/feedback` Session ID and live GPT-5.6 proof before Devpost final submit; the public repository, public YouTube demo URL, Devpost event registration, proof-boundary gate, and public URL verification gate are now verified locally
 - OpenAI/Codex access
 - OpenAI/Codex credits are available only through the event resource flow and must remain prepaid/no-auto-top-up before any live GPT-5.6 evidence run
 - Working project built with Codex and GPT-5.6
@@ -44,7 +44,17 @@ Decision: DOWNGRADE
 - Video assets: missing
 - Devpost flow evidence: submission/openai-build-week-devpost-registration-gate.md
 - Live GPT-5.6 evidence: missing
-- Public URLs found: 11
+- Public URLs found: 15
+
+## Public URL Verification
+
+- PASS: reachable https://github.com/memekr/submitops-scout - HTTP 200
+- PASS: reachable https://www.youtube.com/oembed?url=https://youtu.be/6PCzqJu1dRU&format=json - HTTP 200
+- PASS: reachable https://raw.githubusercontent.com/memekr/submitops-scout/main/README.md - HTTP 200
+- PASS: reachable https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-devpost-field-map.md - HTTP 200
+- PASS: reachable https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-proof-boundary-gate.md - HTTP 200
+- PASS: absent https://raw.githubusercontent.com/memekr/submitops-scout/main/.env - HTTP 404
+
 
 ## Readiness Checks
 
@@ -61,6 +71,12 @@ Decision: DOWNGRADE
 - MISSING: /feedback Session ID present - no detail
 - PASS: public demo video present - https://youtu.be/6PCzqJu1dRU, https://www.youtube.com/oembed?url=https://youtu.be/6PCzqJu1dRU&format=json
 - PASS: secret scan clear - 0 findings
+- PASS: public URL reachable: https://github.com/memekr/submitops-scout - HTTP 200
+- PASS: public URL reachable: https://www.youtube.com/oembed?url=https://youtu.be/6PCzqJu1dRU&format=json - HTTP 200
+- PASS: public URL reachable: https://raw.githubusercontent.com/memekr/submitops-scout/main/README.md - HTTP 200
+- PASS: public URL reachable: https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-devpost-field-map.md - HTTP 200
+- PASS: public URL reachable: https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-proof-boundary-gate.md - HTTP 200
+- PASS: public URL absent: https://raw.githubusercontent.com/memekr/submitops-scout/main/.env - HTTP 404
 
 ## Blockers
 

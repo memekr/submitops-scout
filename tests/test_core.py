@@ -4,11 +4,13 @@ import json
 from pathlib import Path
 from typing import TYPE_CHECKING
 
+from submitops_scout import core
 from submitops_scout.core import (
     assess_readiness,
     parse_event_packet,
     render_devpost_field_map,
     scan_repo_evidence,
+    verify_public_urls,
 )
 from submitops_scout.gpt56_adapter import Gpt56ReviewConfig, build_review_payload, connector_status
 
@@ -33,6 +35,7 @@ Demo: https://youtu.be/example
 Repository: https://github.com/memekr/demo
 Mirror: `https://github.com/memekr/demo-mirror`
 OEmbed: 'https://www.youtube.com/oembed?url=https://youtu.be/example&format=json'
+Colon suffix: https://youtu.be/example:
 """,
         encoding="utf-8",
     )
@@ -86,6 +89,18 @@ Short description:
 
 def test_repo_evidence_scan_and_readiness_go(tmp_path: Path) -> None:
     _write_project(tmp_path)
+    (tmp_path / "src" / "placeholder.py").write_text(
+        """
+YOUTUBE_OEMBED = "https://www.youtube.com/oembed?url={encoded_url}&format=json"
+VIMEO_OEMBED = "https://vimeo.com/api/oembed.json?url="
+""",
+        encoding="utf-8",
+    )
+    (tmp_path / "submission").mkdir()
+    (tmp_path / "submission" / "openai-devpost-field-map.md").write_text(
+        "Generated output with stale URL https://youtu.be/example:\n",
+        encoding="utf-8",
+    )
     event = tmp_path / "event.md"
     event.write_text(
         """# OpenAI Build Week Packet
@@ -110,6 +125,90 @@ def test_repo_evidence_scan_and_readiness_go(tmp_path: Path) -> None:
     )
     assert "https://www.youtube.com/oembed?url=https://youtu.be/example&format=json'" not in (
         packet.evidence.public_urls
+    )
+    assert "https://www.youtube.com/oembed?url={encoded_url}&format=json" not in (
+        packet.evidence.public_urls
+    )
+    assert "https://vimeo.com/api/oembed.json?url=" not in packet.evidence.public_urls
+    assert "https://youtu.be/example:" not in packet.evidence.public_urls
+
+
+def test_public_url_verification_records_reachable_and_absent_urls(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    _write_project(tmp_path)
+    event = tmp_path / "event.md"
+    event.write_text(
+        """# OpenAI Build Week Packet
+- Public deadline: July 21, 2026, 5:00 PM PT.
+- Official Rules are posted and reviewed.
+- A working project built with Codex and GPT-5.6.
+- A public YouTube demo video.
+- A code repository with README.
+- /feedback Codex Session ID.
+""",
+        encoding="utf-8",
+    )
+    seen: list[str] = []
+
+    def fake_fetch_status(url: str, timeout_seconds: float) -> tuple[int | None, str]:
+        del timeout_seconds
+        seen.append(url)
+        if url.endswith("/.env"):
+            return 404, "HTTP 404"
+        return 200, "HTTP 200"
+
+    monkeypatch.setattr(core, "_fetch_status", fake_fetch_status)
+
+    packet = assess_readiness(parse_event_packet(event), scan_repo_evidence(tmp_path))
+    verified = verify_public_urls(
+        packet,
+        required_urls=("https://raw.githubusercontent.com/memekr/demo/main/README.md",),
+        absent_urls=("https://raw.githubusercontent.com/memekr/demo/main/.env",),
+    )
+
+    assert verified.decision == "go"
+    assert verified.public_url_checks
+    assert all(check.status == "pass" for check in verified.public_url_checks)
+    assert "https://github.com/memekr/demo" in seen
+    assert "https://www.youtube.com/oembed?url=https://youtu.be/example&format=json" in seen
+
+
+def test_forbidden_public_url_forces_stop(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    _write_project(tmp_path)
+    event = tmp_path / "event.md"
+    event.write_text(
+        """# OpenAI Build Week Packet
+- Public deadline: July 21, 2026, 5:00 PM PT.
+- Official Rules are posted and reviewed.
+- A working project built with Codex and GPT-5.6.
+- A public YouTube demo video.
+- A code repository with README.
+- /feedback Codex Session ID.
+""",
+        encoding="utf-8",
+    )
+
+    def fake_fetch_status(url: str, timeout_seconds: float) -> tuple[int | None, str]:
+        del url, timeout_seconds
+        return 200, "HTTP 200"
+
+    monkeypatch.setattr(core, "_fetch_status", fake_fetch_status)
+
+    packet = assess_readiness(parse_event_packet(event), scan_repo_evidence(tmp_path))
+    verified = verify_public_urls(
+        packet,
+        absent_urls=("https://raw.githubusercontent.com/memekr/demo/main/.env",),
+    )
+
+    assert verified.decision == "stop"
+    assert any(
+        blocker == "public URL absent: https://raw.githubusercontent.com/memekr/demo/main/.env"
+        for blocker in verified.blockers
     )
 
 

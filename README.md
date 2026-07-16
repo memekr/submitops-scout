@@ -8,6 +8,7 @@ Public repository: https://github.com/memekr/submitops-scout
 Public demo video: https://youtu.be/6PCzqJu1dRU
 Devpost registration evidence: submission/openai-build-week-devpost-registration-gate.md
 Proof boundary gate: submission/openai-build-week-proof-boundary-gate.md
+Public URL verification gate: submission/openai-build-week-public-url-verification-gate.md
 
 This initial Build Week version is scoped to the OpenAI Build Week requirements:
 
@@ -30,12 +31,26 @@ uv run submitops-scout ../submission-packets/openai-build-week.md . \
   --out reports/openai-build-week-submitops-scout.md \
   --json reports/openai-build-week-submitops-scout.json \
   --devpost-map submission/openai-build-week-devpost-field-map.md \
-  --gpt56-payload reports/openai-build-week-gpt56-payload.json
+  --gpt56-payload reports/openai-build-week-gpt56-payload.json \
+  --gpt56-status \
+  --verify-public-urls \
+  --require-public-url https://raw.githubusercontent.com/memekr/submitops-scout/main/README.md \
+  --require-public-url https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-devpost-field-map.md \
+  --require-public-url https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-proof-boundary-gate.md \
+  --forbid-public-url https://raw.githubusercontent.com/memekr/submitops-scout/main/.env
 ```
 
 The Devpost field map is intentionally guarded. If public video, repository, or
 `/feedback` evidence is missing, the map labels those fields as blocked rather
 than inventing paste-ready values.
+
+## Public URL Verification
+
+`--verify-public-urls` checks the discovered repository and hosted demo video.
+`--require-public-url` adds judge-critical raw files that must return HTTP 2xx
+or 3xx, and `--forbid-public-url` records sensitive paths such as `.env` that
+must return HTTP 404 or 410. URL templates in source code are ignored so
+placeholder strings do not become false blockers.
 
 ## Demo Video
 
