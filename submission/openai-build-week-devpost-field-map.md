@@ -1,6 +1,6 @@
 # OpenAI Build Week Devpost Field Map
 
-Generated: 2026-07-17T00:20:04+00:00
+Generated: 2026-07-17T00:22:31+00:00
 Status: DRAFT - DO NOT FINAL SUBMIT
 
 ## Source Snapshot
@@ -8,7 +8,7 @@ Status: DRAFT - DO NOT FINAL SUBMIT
 - Event: OpenAI Build Week Packet
 - Event URL: https://openai.devpost.com/
 - Deadline: July 21, 2026, 5:00 PM PT, per Devpost rules.
-- Captured at: 2026-07-17T00:20:04+00:00
+- Captured at: 2026-07-17T00:22:28+00:00
 
 ## Core Fields
 
@@ -38,11 +38,13 @@ Status: DRAFT - DO NOT FINAL SUBMIT
 
 - PASS: reachable https://github.com/memekr/submitops-scout - HTTP 200
 - PASS: reachable https://www.youtube.com/oembed?url=https://youtu.be/6PCzqJu1dRU&format=json - HTTP 200
+- PASS: reachable https://memekr.github.io/submitops-scout/ - HTTP 200
 - PASS: reachable https://raw.githubusercontent.com/memekr/submitops-scout/main/README.md - HTTP 200
 - PASS: reachable https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-devpost-field-map.md - HTTP 200
 - PASS: reachable https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-proof-boundary-gate.md - HTTP 200
 - PASS: reachable https://raw.githubusercontent.com/memekr/submitops-scout/main/fixtures/openai-build-week-packet.md - HTTP 200
 - PASS: reachable https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-judge-quickstart-gate.md - HTTP 200
+- PASS: reachable https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-static-demo-sandbox.md - HTTP 200
 - PASS: absent https://raw.githubusercontent.com/memekr/submitops-scout/main/.env - HTTP 404
 
 

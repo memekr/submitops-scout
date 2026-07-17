@@ -56,7 +56,7 @@
       "what_it_does": "The tool parses competition source facts, scans a local project for submission evidence, maps requirements to proof, generates a readiness packet, and refuses unsupported claims. Missing public video, missing `/feedback` Session ID, secret findings, or unreviewed rules become explicit `downgrade` or `stop` statuses instead of optimistic submission copy.",
       "why_it_can_win": "It is a practical Codex-native developer tool with a live deadline use case. Instead of only generating code, it helps teams ship truthful, judge-ready submissions under pressure."
     },
-    "captured_at": "2026-07-17T00:20:04+00:00"
+    "captured_at": "2026-07-17T00:22:28+00:00"
   },
   "evidence": {
     "root": ".",
@@ -238,6 +238,11 @@
       "detail": "HTTP 200"
     },
     {
+      "name": "public URL reachable: https://memekr.github.io/submitops-scout/",
+      "status": "pass",
+      "detail": "HTTP 200"
+    },
+    {
       "name": "public URL reachable: https://raw.githubusercontent.com/memekr/submitops-scout/main/README.md",
       "status": "pass",
       "detail": "HTTP 200"
@@ -263,6 +268,11 @@
       "detail": "HTTP 200"
     },
     {
+      "name": "public URL reachable: https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-static-demo-sandbox.md",
+      "status": "pass",
+      "detail": "HTTP 200"
+    },
+    {
       "name": "public URL absent: https://raw.githubusercontent.com/memekr/submitops-scout/main/.env",
       "status": "pass",
       "detail": "HTTP 404"
@@ -273,7 +283,7 @@
     "live GPT-5.6 review evidence present",
     "/feedback Session ID present"
   ],
-  "generated_at": "2026-07-17T00:20:04+00:00",
+  "generated_at": "2026-07-17T00:22:31+00:00",
   "public_url_checks": [
     {
       "url": "https://github.com/memekr/submitops-scout",
@@ -284,6 +294,13 @@
     },
     {
       "url": "https://www.youtube.com/oembed?url=https://youtu.be/6PCzqJu1dRU&format=json",
+      "expectation": "reachable",
+      "status": "pass",
+      "http_status": 200,
+      "detail": "HTTP 200"
+    },
+    {
+      "url": "https://memekr.github.io/submitops-scout/",
       "expectation": "reachable",
       "status": "pass",
       "http_status": 200,
@@ -319,6 +336,13 @@
     },
     {
       "url": "https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-judge-quickstart-gate.md",
+      "expectation": "reachable",
+      "status": "pass",
+      "http_status": 200,
+      "detail": "HTTP 200"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-static-demo-sandbox.md",
       "expectation": "reachable",
       "status": "pass",
       "http_status": 200,
