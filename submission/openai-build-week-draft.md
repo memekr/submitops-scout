@@ -2,6 +2,7 @@
 
 Created: 2026-07-15 09:08 KST.
 Devpost registration: completed 2026-07-16 03:11 KST under `spdish12`.
+Draft access rechecked: 2026-07-18 03:16 KST.
 
 ## Target
 
@@ -12,6 +13,7 @@ Devpost registration: completed 2026-07-16 03:11 KST under `spdish12`.
 - Public repository: https://github.com/memekr/submitops-scout
 - Public demo video: https://youtu.be/6PCzqJu1dRU
 - Devpost registration evidence: `/Users/mac/hackathon-agent/submitops-scout/submission/openai-build-week-devpost-registration-gate.md`
+- Devpost draft access recheck: `/Users/mac/hackathon-agent/submitops-scout/submission/openai-build-week-devpost-draft-access-recheck.md`
 - Proof-boundary gate: `/Users/mac/hackathon-agent/submitops-scout/submission/openai-build-week-proof-boundary-gate.md`
 - Source freshness parse gate: `/Users/mac/hackathon-agent/submitops-scout/submission/openai-build-week-source-freshness-parse-gate.md`
 
@@ -33,7 +35,7 @@ Do not claim final Build Week eligibility yet:
 
 - no `/feedback` Session ID has been inserted into final submission materials
 - no live GPT-5.6 review call has been run with verified free credits
-- Devpost event registration is complete, but project draft creation is blocked by image reCAPTCHA
+- Devpost event registration is complete, but project draft creation/access remains blocked by reCAPTCHA; a transient edit URL was not stable proof because direct edit returned `You are not authorized to access this page`
 - no Devpost project draft has been created or submitted
 
 ## Current Local Artifacts
@@ -46,6 +48,7 @@ Do not claim final Build Week eligibility yet:
 - Qwen fixture: `/Users/mac/hackathon-agent/submitops-scout/fixtures/qwen-cloud-packet.md`
 - Public demo video publication packet: `/Users/mac/hackathon-agent/submitops-scout/submission/openai-build-week-demo-video-publication.md`
 - Devpost registration gate: `/Users/mac/hackathon-agent/submitops-scout/submission/openai-build-week-devpost-registration-gate.md`
+- Devpost draft access recheck: `/Users/mac/hackathon-agent/submitops-scout/submission/openai-build-week-devpost-draft-access-recheck.md`
 - Proof-boundary gate: `/Users/mac/hackathon-agent/submitops-scout/submission/openai-build-week-proof-boundary-gate.md`
 - Judge quickstart gate: `/Users/mac/hackathon-agent/submitops-scout/submission/openai-build-week-judge-quickstart-gate.md`
 - Source freshness parse gate: `/Users/mac/hackathon-agent/submitops-scout/submission/openai-build-week-source-freshness-parse-gate.md`
@@ -69,4 +72,4 @@ How Codex and GPT-5.6 are used:
 
 ## Next Submission Step
 
-Have the entrant complete the Devpost image reCAPTCHA that appears after `Create project`, insert the official `/feedback` Session ID, capture live GPT-5.6 evidence only after a verified no-billing/free-credit boundary, and run the final Devpost preview. Do not submit until those proof gates are complete or explicitly downgraded in the final form.
+Have the entrant complete the Devpost reCAPTCHA that appears after `Create project`, insert the official `/feedback` Session ID, capture live GPT-5.6 evidence only after a verified no-billing/free-credit boundary, and run the final Devpost preview. Do not submit until those proof gates are complete or explicitly downgraded in the final form.

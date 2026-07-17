@@ -118,6 +118,13 @@ def _sample_paths(packet: SubmissionPacket) -> str:
     return "\n".join(f"<li>{_html(path)}</li>" for path in paths)
 
 
+def _devpost_flow_paths(packet: SubmissionPacket) -> str:
+    paths = packet.evidence.devpost_flow_paths[:6]
+    if not paths:
+        return "<li>No Devpost flow evidence recorded.</li>"
+    return "\n".join(f"<li>{_html(path)}</li>" for path in paths)
+
+
 def _metric(label: str, value: object) -> str:
     return f"""
     <div class="metric">
@@ -373,6 +380,8 @@ def render_static_demo(packet: SubmissionPacket) -> str:
           <li>Samples: {len(packet.evidence.sample_data)}</li>
           <li>Tests: {len(packet.evidence.test_files)}</li>
         </ul>
+        <h3>Devpost Flow Evidence</h3>
+        <ul>{_devpost_flow_paths(packet)}</ul>
       </div>
     </section>
     <section class="panel">

@@ -239,7 +239,10 @@ class _EvidenceCollector:
             and suffix in SAMPLE_SUFFIXES
         ):
             self.samples.append(rel)
-        if "devpost-registration-gate" in lower_rel:
+        if (
+            "devpost-registration-gate" in lower_rel
+            or "devpost-draft-access-recheck" in lower_rel
+        ):
             self.devpost_flow_paths.append(rel)
 
     def add_text(self, rel: str, text: str) -> None:
@@ -850,10 +853,10 @@ def _devpost_flow_section(evidence: RepoEvidence) -> str:
     return f"""
 ## Live Devpost State
 
-- Event registration: evidence found in {paths}.
-- Project draft creation: BLOCKED by Devpost image reCAPTCHA after `Create project`;
-  do not create final submission claims until the entrant completes the visible
-  CAPTCHA and the draft preview is checked.
+- Event registration and draft-access evidence found in {paths}.
+- Project draft creation/access: BLOCKED by Devpost reCAPTCHA after `Create
+  project`; direct edit access is not stable until the entrant completes the
+  visible CAPTCHA and the draft preview is checked.
 """
 
 

@@ -331,6 +331,11 @@ def test_devpost_field_map_uses_draft_answers_and_blockers(tmp_path: Path) -> No
         "# Demo\n\nUsage with Codex and GPT-5.6, but no public video yet.\n",
         encoding="utf-8",
     )
+    (tmp_path / "submission").mkdir()
+    (tmp_path / "submission" / "openai-build-week-devpost-draft-access-recheck.md").write_text(
+        "Devpost draft access remains blocked by reCAPTCHA.\n",
+        encoding="utf-8",
+    )
     event = tmp_path / "event.md"
     event.write_text(
         """# OpenAI Build Week Packet
@@ -367,6 +372,8 @@ What it does:
     assert "Codex Credits State" in field_map
     assert "Submitted; approval/code delivery pending." in field_map
     assert "Do not treat this as OpenAI API credit proof." in field_map
+    assert "openai-build-week-devpost-draft-access-recheck.md" in field_map
+    assert "direct edit access is not stable" in field_map
     assert "/feedback Session ID present" in field_map
 
 
@@ -416,6 +423,11 @@ def test_gpt56_connector_status_does_not_expose_secret(
 
 def test_static_demo_renders_packet_with_escaped_event_content(tmp_path: Path) -> None:
     _write_project(tmp_path)
+    (tmp_path / "submission").mkdir()
+    (tmp_path / "submission" / "openai-build-week-devpost-draft-access-recheck.md").write_text(
+        "Devpost draft access remains blocked by reCAPTCHA.\n",
+        encoding="utf-8",
+    )
     event = tmp_path / "event.md"
     event.write_text(
         """# <script>alert(1)</script>
@@ -442,4 +454,6 @@ Short description:
     assert "&lt;script&gt;alert(2)&lt;/script&gt;" in html
     assert "&lt;img src=x onerror=alert(3)&gt;" in html
     assert "https://img.youtube.com/vi/example/hqdefault.jpg" in html
+    assert "Devpost Flow Evidence" in html
+    assert "openai-build-week-devpost-draft-access-recheck.md" in html
     assert "/feedback Session ID present" in html

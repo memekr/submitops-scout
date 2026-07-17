@@ -8,6 +8,7 @@ Public repository: https://github.com/memekr/submitops-scout
 Public demo video: https://youtu.be/6PCzqJu1dRU
 Public static demo: https://memekr.github.io/submitops-scout/
 Devpost registration evidence: submission/openai-build-week-devpost-registration-gate.md
+Devpost draft access recheck: submission/openai-build-week-devpost-draft-access-recheck.md
 Codex credits request evidence: submission/openai-build-week-codex-credits-request.md
 Proof boundary gate: submission/openai-build-week-proof-boundary-gate.md
 Public URL verification gate: submission/openai-build-week-public-url-verification-gate.md
@@ -108,10 +109,10 @@ git. The publication evidence and SHA-256 are recorded in
 ## Devpost Registration Boundary
 
 The OpenAI Build Week Devpost registration is complete under `spdish12`.
-Project draft creation is blocked at Devpost image reCAPTCHA after `Create
-project`; the visible challenge was `Select all squares with traffic lights`.
-No CAPTCHA bypass, project draft, final submit, payment, identity, tax, or
-banking action was performed.
+Project draft creation/access is still blocked at Devpost reCAPTCHA after
+`Create project`. A July 18 KST recheck found active reCAPTCHA challenge frames
+and no stable edit access; no CAPTCHA bypass, final submit, payment, identity,
+tax, or banking action was performed.
 
 ## Codex Credits Boundary
 

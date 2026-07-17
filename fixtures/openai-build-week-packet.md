@@ -1,6 +1,6 @@
 # OpenAI Build Week Packet
 
-Rechecked: 2026-07-17 15:14 KST.
+Rechecked: 2026-07-18 03:16 KST.
 Codex credits request submitted: 2026-07-17 03:18 KST.
 
 ## Event URL and Source Snapshot
@@ -19,7 +19,7 @@ Current source state:
 - Public deadline: July 21, 2026, 5:00 PM PT, per Devpost rules.
 - KST planning conversion: July 22, 2026, 9:00 AM KST, assuming PDT.
 - Official Rules are posted and reviewed.
-- Public Devpost participant count observed during this recheck: about 31,500.
+- Public Devpost participant count observed during this recheck: 33,739.
 - Devpost says builders should create a working project using Codex and GPT-5.6.
 - OpenAI Build Week tracks include Apps for Your Life, Work and Productivity, Developer Tools, and Education.
 - Required submission materials include a chosen category, project description, public YouTube demo video under three minutes with audio, repository URL with README/setup/sample data, and a `/feedback` Codex Session ID from the primary build thread.
@@ -29,6 +29,7 @@ Current source state:
 - Static demo sandbox prepared for judges at https://memekr.github.io/submitops-scout/.
 - Devpost Resources say registered participants can request `$100 Codex credits` before Friday, July 17, 2026 at 12:00 PM PT; the resources copy says these are not API credits.
 - The official Codex credits request form was submitted before the cutoff and the confirmation page displayed `Your response has been recorded`. Credit approval and delivery are still pending.
+- A July 18 KST signed-in Chrome recheck found Devpost still logged in as `spdish12`, but project draft creation/access remains blocked by Devpost reCAPTCHA after `Create project`; direct edit access for a transient `/manage/submissions/1088316/edit` URL returned `You are not authorized to access this page` and is not stable draft proof.
 
 ## Account and Eligibility Notes
 
@@ -57,7 +58,7 @@ Why it can win:
 
 ## Current External Blockers
 
-- Devpost registration is complete, but project draft creation is blocked by a Devpost image reCAPTCHA after `Create project`.
+- Devpost registration is complete, but project draft creation/access is blocked by Devpost reCAPTCHA after `Create project`; direct edit access is not stable draft proof.
 - Codex credits request is submitted but not yet approved or delivered.
 - Official `/feedback` Codex Session ID is not inserted.
 - Live GPT-5.6 review evidence has not been captured under a verified no-billing/free-credit boundary.

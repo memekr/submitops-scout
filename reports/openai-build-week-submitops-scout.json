@@ -35,7 +35,7 @@
       "Devpost overview and rules show the deadline as July 21, 2026, 5:00 PM PDT",
       "Public deadline: July 21, 2026, 5:00 PM PT, per Devpost rules",
       "Official Rules are posted and reviewed",
-      "Public Devpost participant count observed during this recheck: about 31,500",
+      "Public Devpost participant count observed during this recheck: 33,739",
       "Devpost Resources say registered participants can request `$100 Codex credits` before Friday, July 17, 2026 at 12:00 PM PT; the resources copy says these are not API credits"
     ],
     "draft_answers": {
@@ -44,7 +44,7 @@
       "what_it_does": "The tool parses competition source facts, scans a local project for submission evidence, maps requirements to proof, generates a readiness packet, and refuses unsupported claims. Missing public video, missing `/feedback` Session ID, secret findings, or unreviewed rules become explicit `downgrade` or `stop` statuses instead of optimistic submission copy.",
       "why_it_can_win": "It is a practical Codex-native developer tool with a live deadline use case. Instead of only generating code, it helps teams ship truthful, judge-ready submissions under pressure."
     },
-    "captured_at": "2026-07-17T06:19:36+00:00"
+    "captured_at": "2026-07-17T18:20:02+00:00"
   },
   "evidence": {
     "root": ".",
@@ -62,6 +62,7 @@
       "src/submitops_scout/gpt56_adapter.py",
       "src/submitops_scout/static_demo.py",
       "submission/openai-build-week-demo-video-publication.md",
+      "submission/openai-build-week-devpost-draft-access-recheck.md",
       "submission/openai-build-week-devpost-registration-gate.md",
       "submission/openai-build-week-draft.md",
       "submission/openai-build-week-judge-quickstart-gate.md",
@@ -110,7 +111,8 @@
       "https://www.qwencloud.com/challenge/hackathon",
       "https://openai.devpost.com/resources",
       "https://www.youtube.com/oembed?url=https://youtu.be/6PCzqJu1dRU&format=json",
-      "https://devpost.com/submit-to/30223-openai-build-week/manage/submissions"
+      "https://devpost.com/submit-to/30223-openai-build-week/manage/submissions",
+      "https://devpost.com/submit-to/30223-openai-build-week/manage/submissions/1088316/edit"
     ],
     "codex_mentions": [
       "README.md",
@@ -120,6 +122,7 @@
       "src/submitops_scout/core.py",
       "submission/openai-build-week-codex-credits-request.md",
       "submission/openai-build-week-demo-video-publication.md",
+      "submission/openai-build-week-devpost-draft-access-recheck.md",
       "submission/openai-build-week-devpost-registration-gate.md",
       "submission/openai-build-week-draft.md",
       "submission/openai-build-week-judge-quickstart-gate.md",
@@ -137,6 +140,7 @@
       "src/submitops_scout/gpt56_adapter.py",
       "submission/openai-build-week-codex-credits-request.md",
       "submission/openai-build-week-demo-video-publication.md",
+      "submission/openai-build-week-devpost-draft-access-recheck.md",
       "submission/openai-build-week-devpost-registration-gate.md",
       "submission/openai-build-week-draft.md",
       "submission/openai-build-week-judge-quickstart-gate.md",
@@ -148,10 +152,11 @@
     "gpt56_live_evidence_paths": [],
     "feedback_mentions": [],
     "devpost_flow_paths": [
+      "submission/openai-build-week-devpost-draft-access-recheck.md",
       "submission/openai-build-week-devpost-registration-gate.md"
     ],
     "secret_findings": [],
-    "scanned_files": 20
+    "scanned_files": 21
   },
   "checks": [
     {
@@ -280,7 +285,7 @@
     "live GPT-5.6 review evidence present",
     "/feedback Session ID present"
   ],
-  "generated_at": "2026-07-17T06:19:37+00:00",
+  "generated_at": "2026-07-17T18:20:03+00:00",
   "public_url_checks": [
     {
       "url": "https://github.com/memekr/submitops-scout",

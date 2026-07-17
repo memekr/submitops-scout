@@ -1,6 +1,6 @@
 # OpenAI Build Week Devpost Field Map
 
-Generated: 2026-07-17T06:19:37+00:00
+Generated: 2026-07-17T18:20:03+00:00
 Status: DRAFT - DO NOT FINAL SUBMIT
 
 ## Source Snapshot
@@ -8,7 +8,7 @@ Status: DRAFT - DO NOT FINAL SUBMIT
 - Event: OpenAI Build Week Packet
 - Event URL: https://openai.devpost.com/
 - Deadline: July 21, 2026, 5:00 PM PT, per Devpost rules.
-- Captured at: 2026-07-17T06:19:36+00:00
+- Captured at: 2026-07-17T18:20:02+00:00
 
 ## Core Fields
 
@@ -22,10 +22,10 @@ Status: DRAFT - DO NOT FINAL SUBMIT
 
 ## Live Devpost State
 
-- Event registration: evidence found in submission/openai-build-week-devpost-registration-gate.md.
-- Project draft creation: BLOCKED by Devpost image reCAPTCHA after `Create project`;
-  do not create final submission claims until the entrant completes the visible
-  CAPTCHA and the draft preview is checked.
+- Event registration and draft-access evidence found in submission/openai-build-week-devpost-draft-access-recheck.md, submission/openai-build-week-devpost-registration-gate.md.
+- Project draft creation/access: BLOCKED by Devpost reCAPTCHA after `Create
+  project`; direct edit access is not stable until the entrant completes the
+  visible CAPTCHA and the draft preview is checked.
 
 
 ## Codex Credits State
