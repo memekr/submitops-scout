@@ -86,6 +86,55 @@ Short description:
     )
     assert "ready packet" in snapshot.draft_answers.short_description
     assert any("feedback" in item.lower() for item in snapshot.required_materials)
+    assert not any("Project title" in item for item in snapshot.required_materials)
+
+
+def test_parse_event_packet_keeps_requirements_separate_from_draft_answers(
+    tmp_path: Path,
+) -> None:
+    packet = tmp_path / "openai.md"
+    packet.write_text(
+        """# OpenAI Build Week Packet
+
+Sources:
+
+- https://openai.devpost.com/
+
+Current source state:
+
+- Public deadline: July 21, 2026, 5:00 PM PT.
+- Official Rules are posted and reviewed.
+- Public Devpost participant count observed during this recheck: about 31,501.
+- Required submission materials include a chosen category, project description,
+  public YouTube demo video under three minutes with audio, repository URL with
+  README/setup/sample data, and a `/feedback` Codex Session ID.
+- Official `/feedback` Codex Session ID is not inserted.
+- Devpost Resources say registered participants can request `$100 Codex credits`.
+- The submitted Codex credits request is not proof of API credits.
+
+Title: `SubmitOps Scout: Codex-Powered Submission Command Center`
+
+Short description:
+
+> SubmitOps Scout helps builders turn hackathon rules and a project repository
+> into a ready-to-submit packet.
+
+What it does:
+
+> The tool parses competition source facts and refuses unsupported claims.
+""",
+        encoding="utf-8",
+    )
+
+    snapshot = parse_event_packet(packet)
+
+    assert snapshot.sources == ("https://openai.devpost.com/",)
+    assert any("Required submission materials" in item for item in snapshot.required_materials)
+    assert any("Codex credits" in item for item in snapshot.account_requirements)
+    assert any("about 31,501" in item for item in snapshot.source_notes)
+    assert not any("SubmitOps Scout helps" in item for item in snapshot.required_materials)
+    assert not any("Title:" in item for item in snapshot.required_materials)
+    assert not any("not inserted" in item for item in snapshot.required_materials)
 
 
 def test_repo_evidence_scan_and_readiness_go(tmp_path: Path) -> None:

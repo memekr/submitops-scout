@@ -11,6 +11,7 @@ Devpost registration evidence: submission/openai-build-week-devpost-registration
 Codex credits request evidence: submission/openai-build-week-codex-credits-request.md
 Proof boundary gate: submission/openai-build-week-proof-boundary-gate.md
 Public URL verification gate: submission/openai-build-week-public-url-verification-gate.md
+Source freshness parse gate: submission/openai-build-week-source-freshness-parse-gate.md
 
 This initial Build Week version is scoped to the OpenAI Build Week requirements:
 
@@ -41,6 +42,10 @@ uv run submitops-scout fixtures/openai-build-week-packet.md . \
   --require-public-url https://raw.githubusercontent.com/memekr/submitops-scout/main/README.md \
   --require-public-url https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-devpost-field-map.md \
   --require-public-url https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-proof-boundary-gate.md \
+  --require-public-url https://raw.githubusercontent.com/memekr/submitops-scout/main/fixtures/openai-build-week-packet.md \
+  --require-public-url https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-judge-quickstart-gate.md \
+  --require-public-url https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-static-demo-sandbox.md \
+  --require-public-url https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-source-freshness-parse-gate.md \
   --forbid-public-url https://raw.githubusercontent.com/memekr/submitops-scout/main/.env
 ```
 

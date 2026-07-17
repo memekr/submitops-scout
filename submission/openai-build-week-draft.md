@@ -13,6 +13,7 @@ Devpost registration: completed 2026-07-16 03:11 KST under `spdish12`.
 - Public demo video: https://youtu.be/6PCzqJu1dRU
 - Devpost registration evidence: `/Users/mac/hackathon-agent/submitops-scout/submission/openai-build-week-devpost-registration-gate.md`
 - Proof-boundary gate: `/Users/mac/hackathon-agent/submitops-scout/submission/openai-build-week-proof-boundary-gate.md`
+- Source freshness parse gate: `/Users/mac/hackathon-agent/submitops-scout/submission/openai-build-week-source-freshness-parse-gate.md`
 
 ## Current State
 
@@ -47,6 +48,7 @@ Do not claim final Build Week eligibility yet:
 - Devpost registration gate: `/Users/mac/hackathon-agent/submitops-scout/submission/openai-build-week-devpost-registration-gate.md`
 - Proof-boundary gate: `/Users/mac/hackathon-agent/submitops-scout/submission/openai-build-week-proof-boundary-gate.md`
 - Judge quickstart gate: `/Users/mac/hackathon-agent/submitops-scout/submission/openai-build-week-judge-quickstart-gate.md`
+- Source freshness parse gate: `/Users/mac/hackathon-agent/submitops-scout/submission/openai-build-week-source-freshness-parse-gate.md`
 - Public repository: `https://github.com/memekr/submitops-scout`
 
 ## Draft Devpost Copy

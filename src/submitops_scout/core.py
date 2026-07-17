@@ -93,14 +93,31 @@ TRACK_NAMES = (
 )
 REQUIRED_KEYWORDS = (
     "working project",
+    "installation instructions",
+    "supported platforms",
     "category",
     "project description",
     "demo video",
     "code repository",
+    "repository URL",
+    "sample data",
     "README",
     "/feedback",
-    "Codex",
-    "GPT-5.6",
+)
+ACCOUNT_KEYWORDS = (
+    "api credits",
+    "codex credits",
+    "devpost account",
+    "openai/codex access",
+    "openai account",
+)
+BLOCKER_FACT_TERMS = (
+    "blocked",
+    "not captured",
+    "not complete",
+    "not inserted",
+    "not yet",
+    "pending",
 )
 HTTP_OK_MIN = 200
 HTTP_REDIRECT_MAX_EXCLUSIVE = 400
@@ -314,6 +331,60 @@ def _bullet_text(line: str) -> str:
     return line.strip().lstrip("-*[] xX").strip()
 
 
+def _is_markdown_bullet(line: str) -> bool:
+    return line.strip().startswith(("-", "*"))
+
+
+def _is_draft_answer_line(line: str) -> bool:
+    stripped = line.strip().lower()
+    return stripped.startswith(
+        (
+            ">",
+            "title:",
+            "short description:",
+            "what it does:",
+            "why it can win:",
+        )
+    )
+
+
+def _is_source_only_line(line: str) -> bool:
+    text = _bullet_text(line)
+    return bool(URL_PATTERN.fullmatch(text))
+
+
+def _bullet_items(lines: list[str]) -> tuple[str, ...]:
+    items: list[str] = []
+    current: list[str] = []
+    for line in lines:
+        stripped = line.strip()
+        if not stripped:
+            if current:
+                items.append(" ".join(current))
+                current = []
+            continue
+        if _is_markdown_bullet(line):
+            if current:
+                items.append(" ".join(current))
+            current = [_bullet_text(line)]
+            continue
+        if current and line[:1].isspace() and not _is_draft_answer_line(line):
+            current.append(stripped)
+            continue
+        if current:
+            items.append(" ".join(current))
+            current = []
+    if current:
+        items.append(" ".join(current))
+    return tuple(items)
+
+
+def _fact_line(line: str) -> str:
+    if _is_draft_answer_line(line) or _is_source_only_line(line):
+        return ""
+    return _bullet_text(line)
+
+
 def _clean_markdown_value(value: str) -> str:
     clean = value.strip().strip()
     if clean.startswith(">"):
@@ -388,22 +459,23 @@ def parse_event_packet(path: Path) -> EventSnapshot:
             break
     tracks = tuple(track for track in TRACK_NAMES if track.lower() in text.lower())
     required = [
-        _bullet_text(line)
-        for line in lines
-        if any(keyword.lower() in line.lower() for keyword in REQUIRED_KEYWORDS)
+        fact
+        for item in _bullet_items(lines)
+        if (fact := _fact_line(item))
+        if not any(term in fact.lower() for term in BLOCKER_FACT_TERMS)
+        if any(keyword.lower() in fact.lower() for keyword in REQUIRED_KEYWORDS)
     ]
     accounts = [
-        _bullet_text(line)
-        for line in lines
-        if any(
-            term in line.lower()
-            for term in ("devpost account", "openai", "codex credits", "api credits")
-        )
+        fact
+        for item in _bullet_items(lines)
+        if (fact := _fact_line(item))
+        if any(term in fact.lower() for term in ACCOUNT_KEYWORDS)
     ]
     notes = [
-        _bullet_text(line)
+        fact
         for line in lines
-        if any(term in line.lower() for term in ("rules", "participant", "deadline", "eligible"))
+        if (fact := _fact_line(line))
+        if any(term in fact.lower() for term in ("rules", "participant", "deadline", "eligible"))
     ]
     return EventSnapshot(
         name=heading,
@@ -925,6 +997,10 @@ Decision: {packet.decision.upper()}
 ## Required Materials
 
 {_bullets(packet.event.required_materials)}
+
+## Account Requirements
+
+{_bullets(packet.event.account_requirements)}
 
 ## Repository Evidence
 

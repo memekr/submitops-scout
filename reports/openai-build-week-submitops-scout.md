@@ -1,6 +1,6 @@
 # SubmitOps Scout Packet
 
-Generated: 2026-07-17T00:22:31+00:00
+Generated: 2026-07-17T06:17:49+00:00
 Decision: DOWNGRADE
 
 ## Event Snapshot
@@ -8,7 +8,7 @@ Decision: DOWNGRADE
 - Event: OpenAI Build Week Packet
 - URL: https://openai.devpost.com/
 - Deadline: July 21, 2026, 5:00 PM PT, per Devpost rules.
-- Captured at: 2026-07-17T00:22:28+00:00
+- Captured at: 2026-07-17T06:17:48+00:00
 
 ## Tracks
 
@@ -19,23 +19,25 @@ Decision: DOWNGRADE
 
 ## Required Materials
 
-- Codex credits request submitted: 2026-07-17 03:18 KST
 - Devpost says builders should create a working project using Codex and GPT-5.6
 - Required submission materials include a chosen category, project description, public YouTube demo video under three minutes with audio, repository URL with README/setup/sample data, and a `/feedback` Codex Session ID from the primary build thread
+- The FAQ says Codex usage must be demonstrated in the text description, demo video, and README; GPT-5.6 must be clearly referenced in the demo video and repository
+- Developer tool submissions should include installation instructions, supported platforms, and a way for judges to test without rebuilding from scratch
+
+## Account Requirements
+
 - Devpost Resources say registered participants can request `$100 Codex credits` before Friday, July 17, 2026 at 12:00 PM PT; the resources copy says these are not API credits
 - The official Codex credits request form was submitted before the cutoff and the confirmation page displayed `Your response has been recorded`. Credit approval and delivery are still pending
+- Devpost account is required
 - OpenAI/Codex access is required
 - OpenAI/Codex credits must stay within verified free, prepaid, or no-auto-top-up boundaries before any live GPT-5.6 evidence run
 - The submitted Codex credits request is not proof of API credits; do not run any billable API or paid resource path from this request alone
-- Title: `SubmitOps Scout: Codex-Powered Submission Command Center`
-- > The tool parses competition source facts, scans a local project for submission evidence, maps requirements to proof, generates a readiness packet, and refuses unsupported claims. Missing public video, missing `/feedback` Session ID, secret findings, or unreviewed rules become explicit `downgrade` or `stop` statuses instead of optimistic submission copy
-- > It is a practical Codex-native developer tool with a live deadline use case. Instead of only generating code, it helps teams ship truthful, judge-ready submissions under pressure
 - Codex credits request is submitted but not yet approved or delivered
 
 ## Repository Evidence
 
 - Root: .
-- Scanned text files: 19
+- Scanned text files: 20
 - README: README.md
 - License: LICENSE
 - Tests: 2
@@ -44,7 +46,7 @@ Decision: DOWNGRADE
 - Video assets: missing
 - Devpost flow evidence: submission/openai-build-week-devpost-registration-gate.md
 - Live GPT-5.6 evidence: missing
-- Public URLs found: 22
+- Public URLs found: 23
 
 ## Public URL Verification
 

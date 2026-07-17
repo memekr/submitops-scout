@@ -7,6 +7,7 @@
       "https://openai.com/build-week/",
       "https://openai.devpost.com/",
       "https://openai.devpost.com/rules",
+      "https://openai.devpost.com/details/faqs",
       "https://memekr.github.io/submitops-scout/"
     ],
     "tracks": [
@@ -16,39 +17,26 @@
       "Education"
     ],
     "required_materials": [
-      "Codex credits request submitted: 2026-07-17 03:18 KST",
       "Devpost says builders should create a working project using Codex and GPT-5.6",
       "Required submission materials include a chosen category, project description, public YouTube demo video under three minutes with audio, repository URL with README/setup/sample data, and a `/feedback` Codex Session ID from the primary build thread",
+      "The FAQ says Codex usage must be demonstrated in the text description, demo video, and README; GPT-5.6 must be clearly referenced in the demo video and repository",
+      "Developer tool submissions should include installation instructions, supported platforms, and a way for judges to test without rebuilding from scratch"
+    ],
+    "account_requirements": [
       "Devpost Resources say registered participants can request `$100 Codex credits` before Friday, July 17, 2026 at 12:00 PM PT; the resources copy says these are not API credits",
       "The official Codex credits request form was submitted before the cutoff and the confirmation page displayed `Your response has been recorded`. Credit approval and delivery are still pending",
+      "Devpost account is required",
       "OpenAI/Codex access is required",
       "OpenAI/Codex credits must stay within verified free, prepaid, or no-auto-top-up boundaries before any live GPT-5.6 evidence run",
       "The submitted Codex credits request is not proof of API credits; do not run any billable API or paid resource path from this request alone",
-      "Title: `SubmitOps Scout: Codex-Powered Submission Command Center`",
-      "> The tool parses competition source facts, scans a local project for submission evidence, maps requirements to proof, generates a readiness packet, and refuses unsupported claims. Missing public video, missing `/feedback` Session ID, secret findings, or unreviewed rules become explicit `downgrade` or `stop` statuses instead of optimistic submission copy",
-      "> It is a practical Codex-native developer tool with a live deadline use case. Instead of only generating code, it helps teams ship truthful, judge-ready submissions under pressure",
       "Codex credits request is submitted but not yet approved or delivered"
     ],
-    "account_requirements": [
-      "# OpenAI Build Week Packet",
-      "Codex credits request submitted: 2026-07-17 03:18 KST",
-      "https://openai.com/build-week/",
-      "https://openai.devpost.com/",
-      "https://openai.devpost.com/rules",
-      "OpenAI's Build Week page says submissions are due July 21, 2026, judging runs July 22 to August 7, and winners are announced August 12",
-      "OpenAI Build Week tracks include Apps for Your Life, Work and Productivity, Developer Tools, and Education",
-      "Devpost Resources say registered participants can request `$100 Codex credits` before Friday, July 17, 2026 at 12:00 PM PT; the resources copy says these are not API credits"
-    ],
     "source_notes": [
-      "https://openai.devpost.com/rules",
-      "Devpost rules show the deadline as July 21, 2026, 5:00 PM PDT",
+      "Devpost overview and rules show the deadline as July 21, 2026, 5:00 PM PDT",
       "Public deadline: July 21, 2026, 5:00 PM PT, per Devpost rules",
       "Official Rules are posted and reviewed",
-      "Public Devpost participant count observed during this recheck: about 29,422",
-      "Devpost Resources say registered participants can request `$100 Codex credits` before Friday, July 17, 2026 at 12:00 PM PT; the resources copy says these are not API credits",
-      "> SubmitOps Scout helps builders turn hackathon rules and a project repository into a ready-to-submit packet: evidence scan, eligibility gates, proof links, Devpost copy, validation commands, and exact blockers",
-      "> The tool parses competition source facts, scans a local project for submission evidence, maps requirements to proof, generates a readiness packet, and refuses unsupported claims. Missing public video, missing `/feedback` Session ID, secret findings, or unreviewed rules become explicit `downgrade` or `stop` statuses instead of optimistic submission copy",
-      "> It is a practical Codex-native developer tool with a live deadline use case. Instead of only generating code, it helps teams ship truthful, judge-ready submissions under pressure"
+      "Public Devpost participant count observed during this recheck: about 31,500",
+      "Devpost Resources say registered participants can request `$100 Codex credits` before Friday, July 17, 2026 at 12:00 PM PT; the resources copy says these are not API credits"
     ],
     "draft_answers": {
       "title": "SubmitOps Scout: Codex-Powered Submission Command Center",
@@ -56,7 +44,7 @@
       "what_it_does": "The tool parses competition source facts, scans a local project for submission evidence, maps requirements to proof, generates a readiness packet, and refuses unsupported claims. Missing public video, missing `/feedback` Session ID, secret findings, or unreviewed rules become explicit `downgrade` or `stop` statuses instead of optimistic submission copy.",
       "why_it_can_win": "It is a practical Codex-native developer tool with a live deadline use case. Instead of only generating code, it helps teams ship truthful, judge-ready submissions under pressure."
     },
-    "captured_at": "2026-07-17T00:22:28+00:00"
+    "captured_at": "2026-07-17T06:17:48+00:00"
   },
   "evidence": {
     "root": ".",
@@ -79,6 +67,7 @@
       "submission/openai-build-week-judge-quickstart-gate.md",
       "submission/openai-build-week-proof-boundary-gate.md",
       "submission/openai-build-week-public-url-verification-gate.md",
+      "submission/openai-build-week-source-freshness-parse-gate.md",
       "submission/openai-build-week-static-demo-sandbox.md"
     ],
     "test_files": [
@@ -105,6 +94,10 @@
       "https://raw.githubusercontent.com/memekr/submitops-scout/main/README.md",
       "https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-devpost-field-map.md",
       "https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-proof-boundary-gate.md",
+      "https://raw.githubusercontent.com/memekr/submitops-scout/main/fixtures/openai-build-week-packet.md",
+      "https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-judge-quickstart-gate.md",
+      "https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-static-demo-sandbox.md",
+      "https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-source-freshness-parse-gate.md",
       "https://raw.githubusercontent.com/memekr/submitops-scout/main/.env",
       "https://github.com/memekr/submitops-scout.git",
       "https://openai.com/build-week/",
@@ -117,10 +110,7 @@
       "https://www.qwencloud.com/challenge/hackathon",
       "https://openai.devpost.com/resources",
       "https://www.youtube.com/oembed?url=https://youtu.be/6PCzqJu1dRU&format=json",
-      "https://devpost.com/submit-to/30223-openai-build-week/manage/submissions",
-      "https://raw.githubusercontent.com/memekr/submitops-scout/main/fixtures/openai-build-week-packet.md",
-      "https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-judge-quickstart-gate.md",
-      "https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-static-demo-sandbox.md"
+      "https://devpost.com/submit-to/30223-openai-build-week/manage/submissions"
     ],
     "codex_mentions": [
       "README.md",
@@ -135,6 +125,7 @@
       "submission/openai-build-week-judge-quickstart-gate.md",
       "submission/openai-build-week-proof-boundary-gate.md",
       "submission/openai-build-week-public-url-verification-gate.md",
+      "submission/openai-build-week-source-freshness-parse-gate.md",
       "submission/openai-build-week-static-demo-sandbox.md"
     ],
     "gpt56_mentions": [
@@ -151,6 +142,7 @@
       "submission/openai-build-week-judge-quickstart-gate.md",
       "submission/openai-build-week-proof-boundary-gate.md",
       "submission/openai-build-week-public-url-verification-gate.md",
+      "submission/openai-build-week-source-freshness-parse-gate.md",
       "submission/openai-build-week-static-demo-sandbox.md"
     ],
     "gpt56_live_evidence_paths": [],
@@ -159,7 +151,7 @@
       "submission/openai-build-week-devpost-registration-gate.md"
     ],
     "secret_findings": [],
-    "scanned_files": 19
+    "scanned_files": 20
   },
   "checks": [
     {
@@ -283,7 +275,7 @@
     "live GPT-5.6 review evidence present",
     "/feedback Session ID present"
   ],
-  "generated_at": "2026-07-17T00:22:31+00:00",
+  "generated_at": "2026-07-17T06:17:49+00:00",
   "public_url_checks": [
     {
       "url": "https://github.com/memekr/submitops-scout",
