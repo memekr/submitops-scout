@@ -4,6 +4,7 @@ import json
 import re
 from dataclasses import asdict, dataclass
 from datetime import UTC, datetime
+from html import unescape
 from pathlib import Path
 from typing import Any
 from urllib import error, parse, request
@@ -12,6 +13,7 @@ SKIP_DIRS = {
     ".git",
     ".mypy_cache",
     ".pytest_cache",
+    ".playwright-cli",
     ".ruff_cache",
     ".ty",
     ".venv",
@@ -37,7 +39,7 @@ TEXT_SUFFIXES = {
 }
 TEXT_FILENAMES = {"LICENSE", "NOTICE", "Dockerfile", "Makefile"}
 MAX_TEXT_BYTES = 1_000_000
-SUBMISSION_EVIDENCE_TEXT_SKIP_PREFIXES = ("reports/", "tests/")
+SUBMISSION_EVIDENCE_TEXT_SKIP_PREFIXES = ("docs/", "reports/", "tests/")
 SUBMISSION_EVIDENCE_TEXT_SKIP_FRAGMENTS = ("devpost-field-map",)
 VIDEO_SUFFIXES = {".mp4", ".mov", ".webm"}
 DECK_SUFFIXES = {".ppt", ".pptx", ".pdf"}
@@ -52,7 +54,7 @@ SECRET_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
         ),
     ),
 )
-URL_PATTERN = re.compile(r"https?://[^\s)>\"'`]+")
+URL_PATTERN = re.compile(r"https?://[^\s)<>\"'`]+")
 URL_TRAILING_PUNCTUATION = ".,:;"
 FEEDBACK_ID_PATTERN = re.compile(
     r"(?i)(?:/feedback\s+)?session id\s*[:=-]\s*"
@@ -463,7 +465,7 @@ def _is_usable_public_url(url: str) -> bool:
 
 
 def _clean_extracted_url(url: str) -> str:
-    return url.strip().rstrip(URL_TRAILING_PUNCTUATION)
+    return unescape(url.strip().split("<", maxsplit=1)[0]).rstrip(URL_TRAILING_PUNCTUATION)
 
 
 def scan_repo_evidence(root: Path) -> RepoEvidence:

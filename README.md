@@ -6,6 +6,7 @@ notes, and exact external blockers.
 
 Public repository: https://github.com/memekr/submitops-scout
 Public demo video: https://youtu.be/6PCzqJu1dRU
+Public static demo: https://memekr.github.io/submitops-scout/
 Devpost registration evidence: submission/openai-build-week-devpost-registration-gate.md
 Codex credits request evidence: submission/openai-build-week-codex-credits-request.md
 Proof boundary gate: submission/openai-build-week-proof-boundary-gate.md
@@ -32,9 +33,11 @@ uv run submitops-scout fixtures/openai-build-week-packet.md . \
   --out reports/openai-build-week-submitops-scout.md \
   --json reports/openai-build-week-submitops-scout.json \
   --devpost-map submission/openai-build-week-devpost-field-map.md \
+  --static-demo docs/index.html \
   --gpt56-payload reports/openai-build-week-gpt56-payload.json \
   --gpt56-status \
   --verify-public-urls \
+  --require-public-url https://memekr.github.io/submitops-scout/ \
   --require-public-url https://raw.githubusercontent.com/memekr/submitops-scout/main/README.md \
   --require-public-url https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-devpost-field-map.md \
   --require-public-url https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-proof-boundary-gate.md \
@@ -53,6 +56,7 @@ uv run submitops-scout fixtures/openai-build-week-packet.md . \
   --out reports/openai-build-week-submitops-scout.md \
   --json reports/openai-build-week-submitops-scout.json \
   --devpost-map submission/openai-build-week-devpost-field-map.md \
+  --static-demo docs/index.html \
   --gpt56-payload reports/openai-build-week-gpt56-payload.json \
   --gpt56-status
 uv run pytest
@@ -67,6 +71,13 @@ separate live review.
 The Devpost field map is intentionally guarded. If public video, repository, or
 `/feedback` evidence is missing, the map labels those fields as blocked rather
 than inventing paste-ready values.
+
+## Static Demo Sandbox
+
+The generated static dashboard in `docs/index.html` gives judges a no-login,
+no-build view of the same packet: decision state, blockers, public URL checks,
+sample paths, the public video thumbnail, and the fresh-clone command. It is
+published through GitHub Pages at https://memekr.github.io/submitops-scout/.
 
 ## Public URL Verification
 

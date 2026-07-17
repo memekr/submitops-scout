@@ -1,6 +1,7 @@
 .venv/
 .ruff_cache/
 .pytest_cache/
+.playwright-cli/
 .ty/
 __pycache__/
 *.pyc

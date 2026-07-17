@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:,">
+  <title>SubmitOps Scout: Codex-Powered Submission Command Center | SubmitOps Scout</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #172033;
+      --muted: #5b6578;
+      --line: #d8dee9;
+      --paper: #f7f9fc;
+      --panel: #ffffff;
+      --green: #0f766e;
+      --amber: #b45309;
+      --red: #b42318;
+      --blue: #2357c5;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font: 16px/1.5 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+    }
+    a { color: var(--blue); overflow-wrap: anywhere; }
+    header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: end;
+      padding: 32px max(24px, calc((100vw - 1120px) / 2));
+      background: #ffffff;
+      border-bottom: 1px solid var(--line);
+    }
+    .eyebrow {
+      margin: 0 0 6px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { margin-bottom: 10px; font-size: clamp(2rem, 4vw, 3.8rem); line-height: 1; }
+    h2 { font-size: 1.25rem; }
+    .lede { max-width: 760px; margin-bottom: 0; color: var(--muted); }
+    .decision {
+      min-width: 180px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      background: #fef7ed;
+      text-align: right;
+    }
+    .decision strong { display: block; font-size: 1.35rem; color: var(--amber); }
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    section { margin: 0 0 24px; }
+    .overview {
+      display: grid;
+      grid-template-columns: minmax(280px, 0.9fr) minmax(320px, 1.1fr);
+      gap: 20px;
+      align-items: stretch;
+    }
+    .video {
+      display: block;
+      min-height: 260px;
+      border: 1px solid var(--line);
+      background: #111827;
+      overflow: hidden;
+    }
+    .video img {
+      width: 100%;
+      height: 100%;
+      min-height: 260px;
+      display: block;
+      object-fit: cover;
+    }
+    .video-placeholder {
+      min-height: 260px;
+      display: grid;
+      place-items: center;
+      color: #ffffff;
+    }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .metric {
+      padding: 16px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+    }
+    .metric span { display: block; color: var(--muted); font-size: 0.85rem; }
+    .metric strong { display: block; margin-top: 6px; font-size: 1.5rem; }
+    .panel {
+      padding: 20px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+    }
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 20px;
+    }
+    .toolbar {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    select {
+      min-height: 36px;
+      border: 1px solid var(--line);
+      background: #ffffff;
+      color: var(--ink);
+    }
+    .checks {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 12px;
+    }
+    .check {
+      min-height: 132px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      background: #ffffff;
+    }
+    .check h3 { margin: 10px 0 6px; font-size: 1rem; }
+    .check p { margin: 0; color: var(--muted); overflow-wrap: anywhere; }
+    .status {
+      display: inline-block;
+      padding: 3px 7px;
+      border: 1px solid currentColor;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+    .status-pass { color: var(--green); }
+    .status-missing { color: var(--amber); }
+    .status-stop { color: var(--red); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #ffffff;
+    }
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+    th { color: var(--muted); font-size: 0.84rem; }
+    pre {
+      margin: 0;
+      padding: 16px;
+      overflow: auto;
+      background: #101828;
+      color: #e6edf6;
+    }
+    ul { margin-bottom: 0; padding-left: 20px; }
+    .sources {
+      display: grid;
+      gap: 8px;
+    }
+    @media (max-width: 780px) {
+      header, .overview, .split { grid-template-columns: 1fr; }
+      header { align-items: start; }
+      .decision { text-align: left; }
+      .metrics { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <p class="eyebrow">OpenAI Build Week Packet</p>
+      <h1>SubmitOps Scout: Codex-Powered Submission Command Center</h1>
+      <p class="lede">SubmitOps Scout helps builders turn hackathon rules and a project repository into a ready-to-submit packet: evidence scan, eligibility gates, proof links, Devpost copy, validation commands, and exact blockers.</p>
+    </div>
+    <div class="decision">
+      <span>Decision</span>
+      <strong>DOWNGRADE</strong>
+      <span>2026-07-17T00:20:04+00:00</span>
+    </div>
+  </header>
+  <main>
+    <section class="overview">
+      <a class="video" href="https://youtu.be/6PCzqJu1dRU"><img src="https://img.youtube.com/vi/6PCzqJu1dRU/hqdefault.jpg" alt="Public demo video thumbnail"></a>
+      <div class="metrics">
+        <div class="metric">
+      <span>Deadline</span>
+      <strong>July 21, 2026, 5:00 PM PT, per Devpost rules.</strong>
+    </div>
+        <div class="metric">
+      <span>Readiness checks passed</span>
+      <strong>19/21</strong>
+    </div>
+        <div class="metric">
+      <span>Open blockers</span>
+      <strong>2</strong>
+    </div>
+        <div class="metric">
+      <span>Public URLs verified</span>
+      <strong>8</strong>
+    </div>
+        <div class="metric">
+      <span>Repository</span>
+      <strong>https://github.com/memekr/submitops-scout</strong>
+    </div>
+        <div class="metric">
+      <span>Scanned text files</span>
+      <strong>19</strong>
+    </div>
+      </div>
+    </section>
+    <section class="split">
+      <div class="panel">
+        <h2>Current Blockers</h2>
+        <ul><li>live GPT-5.6 review evidence present</li>
+<li>/feedback Session ID present</li></ul>
+      </div>
+      <div class="panel">
+        <h2>Judge Assets</h2>
+        <ul>
+          <li>Repository: <a href="https://github.com/memekr/submitops-scout">https://github.com/memekr/submitops-scout</a></li>
+          <li>Demo video: <a href="https://youtu.be/6PCzqJu1dRU">https://youtu.be/6PCzqJu1dRU</a></li>
+          <li>Samples: 5</li>
+          <li>Tests: 2</li>
+        </ul>
+      </div>
+    </section>
+    <section class="panel">
+      <div class="toolbar">
+        <h2>Readiness Checks</h2>
+        <label>Filter
+          <select id="check-filter">
+            <option value="all">All</option>
+            <option value="pass">Pass</option>
+            <option value="missing">Missing</option>
+            <option value="stop">Stop</option>
+          </select>
+        </label>
+      </div>
+      <div class="checks" id="checks"><article class="check" data-status="pass">
+          <span class="status status-pass">PASS</span>
+          <h3>official rules captured</h3>
+          <p>Packet records Official Rules source state.</p>
+        </article>
+<article class="check" data-status="pass">
+          <span class="status status-pass">PASS</span>
+          <h3>README present</h3>
+          <p>README.md</p>
+        </article>
+<article class="check" data-status="pass">
+          <span class="status status-pass">PASS</span>
+          <h3>license present</h3>
+          <p>LICENSE</p>
+        </article>
+<article class="check" data-status="pass">
+          <span class="status status-pass">PASS</span>
+          <h3>public repository URL present</h3>
+          <p>https://github.com/memekr/submitops-scout</p>
+        </article>
+<article class="check" data-status="pass">
+          <span class="status status-pass">PASS</span>
+          <h3>setup path present</h3>
+          <p>README.md, fixtures/openai-build-week-packet.md, scripts/render-openai-demo-video.sh, src/submitops_scout/core.py, src/submitops_scout/gpt56_adapter.py</p>
+        </article>
+<article class="check" data-status="pass">
+          <span class="status status-pass">PASS</span>
+          <h3>tests present</h3>
+          <p>2 test files</p>
+        </article>
+<article class="check" data-status="pass">
+          <span class="status status-pass">PASS</span>
+          <h3>sample data present</h3>
+          <p>fixtures/openai-build-week-packet.md, fixtures/qwen-cloud-packet.md, reports/openai-build-week-gpt56-payload.json, reports/openai-build-week-submitops-scout.json, reports/openai-build-week-submitops-scout.md</p>
+        </article>
+<article class="check" data-status="pass">
+          <span class="status status-pass">PASS</span>
+          <h3>Codex evidence present</h3>
+          <p>README.md, fixtures/openai-build-week-packet.md, pyproject.toml, scripts/render-openai-demo-video.sh, src/submitops_scout/core.py</p>
+        </article>
+<article class="check" data-status="pass">
+          <span class="status status-pass">PASS</span>
+          <h3>GPT-5.6 evidence present</h3>
+          <p>README.md, fixtures/openai-build-week-packet.md, scripts/render-openai-demo-video.sh, src/submitops_scout/cli.py, src/submitops_scout/core.py</p>
+        </article>
+<article class="check" data-status="missing">
+          <span class="status status-missing">MISSING</span>
+          <h3>live GPT-5.6 review evidence present</h3>
+          <p>No supporting evidence recorded.</p>
+        </article>
+<article class="check" data-status="missing">
+          <span class="status status-missing">MISSING</span>
+          <h3>/feedback Session ID present</h3>
+          <p>No supporting evidence recorded.</p>
+        </article>
+<article class="check" data-status="pass">
+          <span class="status status-pass">PASS</span>
+          <h3>public demo video present</h3>
+          <p>https://youtu.be/6PCzqJu1dRU, https://www.youtube.com/oembed?url=https://youtu.be/6PCzqJu1dRU&amp;format=json</p>
+        </article>
+<article class="check" data-status="pass">
+          <span class="status status-pass">PASS</span>
+          <h3>secret scan clear</h3>
+          <p>0 findings</p>
+        </article>
+<article class="check" data-status="pass">
+          <span class="status status-pass">PASS</span>
+          <h3>public URL reachable: https://github.com/memekr/submitops-scout</h3>
+          <p>HTTP 200</p>
+        </article>
+<article class="check" data-status="pass">
+          <span class="status status-pass">PASS</span>
+          <h3>public URL reachable: https://www.youtube.com/oembed?url=https://youtu.be/6PCzqJu1dRU&amp;format=json</h3>
+          <p>HTTP 200</p>
+        </article>
+<article class="check" data-status="pass">
+          <span class="status status-pass">PASS</span>
+          <h3>public URL reachable: https://raw.githubusercontent.com/memekr/submitops-scout/main/README.md</h3>
+          <p>HTTP 200</p>
+        </article>
+<article class="check" data-status="pass">
+          <span class="status status-pass">PASS</span>
+          <h3>public URL reachable: https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-devpost-field-map.md</h3>
+          <p>HTTP 200</p>
+        </article>
+<article class="check" data-status="pass">
+          <span class="status status-pass">PASS</span>
+          <h3>public URL reachable: https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-proof-boundary-gate.md</h3>
+          <p>HTTP 200</p>
+        </article>
+<article class="check" data-status="pass">
+          <span class="status status-pass">PASS</span>
+          <h3>public URL reachable: https://raw.githubusercontent.com/memekr/submitops-scout/main/fixtures/openai-build-week-packet.md</h3>
+          <p>HTTP 200</p>
+        </article>
+<article class="check" data-status="pass">
+          <span class="status status-pass">PASS</span>
+          <h3>public URL reachable: https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-judge-quickstart-gate.md</h3>
+          <p>HTTP 200</p>
+        </article>
+<article class="check" data-status="pass">
+          <span class="status status-pass">PASS</span>
+          <h3>public URL absent: https://raw.githubusercontent.com/memekr/submitops-scout/main/.env</h3>
+          <p>HTTP 404</p>
+        </article></div>
+    </section>
+    <section class="panel">
+      <h2>Public URL Verification</h2>
+      <table>
+        <thead>
+          <tr><th>Status</th><th>Expectation</th><th>URL</th><th>Detail</th></tr>
+        </thead>
+        <tbody><tr>
+          <td><span class="status status-pass">PASS</span></td>
+          <td>reachable</td>
+          <td><a href="https://github.com/memekr/submitops-scout">https://github.com/memekr/submitops-scout</a></td>
+          <td>HTTP 200</td>
+        </tr>
+<tr>
+          <td><span class="status status-pass">PASS</span></td>
+          <td>reachable</td>
+          <td><a href="https://www.youtube.com/oembed?url=https://youtu.be/6PCzqJu1dRU&amp;format=json">https://www.youtube.com/oembed?url=https://youtu.be/6PCzqJu1dRU&amp;format=json</a></td>
+          <td>HTTP 200</td>
+        </tr>
+<tr>
+          <td><span class="status status-pass">PASS</span></td>
+          <td>reachable</td>
+          <td><a href="https://raw.githubusercontent.com/memekr/submitops-scout/main/README.md">https://raw.githubusercontent.com/memekr/submitops-scout/main/README.md</a></td>
+          <td>HTTP 200</td>
+        </tr>
+<tr>
+          <td><span class="status status-pass">PASS</span></td>
+          <td>reachable</td>
+          <td><a href="https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-devpost-field-map.md">https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-devpost-field-map.md</a></td>
+          <td>HTTP 200</td>
+        </tr>
+<tr>
+          <td><span class="status status-pass">PASS</span></td>
+          <td>reachable</td>
+          <td><a href="https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-proof-boundary-gate.md">https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-proof-boundary-gate.md</a></td>
+          <td>HTTP 200</td>
+        </tr>
+<tr>
+          <td><span class="status status-pass">PASS</span></td>
+          <td>reachable</td>
+          <td><a href="https://raw.githubusercontent.com/memekr/submitops-scout/main/fixtures/openai-build-week-packet.md">https://raw.githubusercontent.com/memekr/submitops-scout/main/fixtures/openai-build-week-packet.md</a></td>
+          <td>HTTP 200</td>
+        </tr>
+<tr>
+          <td><span class="status status-pass">PASS</span></td>
+          <td>reachable</td>
+          <td><a href="https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-judge-quickstart-gate.md">https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-judge-quickstart-gate.md</a></td>
+          <td>HTTP 200</td>
+        </tr>
+<tr>
+          <td><span class="status status-pass">PASS</span></td>
+          <td>absent</td>
+          <td><a href="https://raw.githubusercontent.com/memekr/submitops-scout/main/.env">https://raw.githubusercontent.com/memekr/submitops-scout/main/.env</a></td>
+          <td>HTTP 404</td>
+        </tr></tbody>
+      </table>
+    </section>
+    <section class="split">
+      <div class="panel">
+        <h2>Judge Command</h2>
+        <pre>git clone https://github.com/memekr/submitops-scout.git
+cd submitops-scout
+uv sync --all-groups
+uv run submitops-scout fixtures/openai-build-week-packet.md . \
+  --out reports/openai-build-week-submitops-scout.md \
+  --json reports/openai-build-week-submitops-scout.json \
+  --devpost-map submission/openai-build-week-devpost-field-map.md \
+  --gpt56-payload reports/openai-build-week-gpt56-payload.json \
+  --gpt56-status
+uv run pytest</pre>
+      </div>
+      <div class="panel">
+        <h2>Samples and Sources</h2>
+        <ul><li>fixtures/openai-build-week-packet.md</li>
+<li>fixtures/qwen-cloud-packet.md</li>
+<li>reports/openai-build-week-gpt56-payload.json</li>
+<li>reports/openai-build-week-submitops-scout.json</li>
+<li>reports/openai-build-week-submitops-scout.md</li></ul>
+        <div class="sources"><a href="https://openai.com/build-week/">https://openai.com/build-week/</a>
+<a href="https://openai.devpost.com/">https://openai.devpost.com/</a>
+<a href="https://openai.devpost.com/rules">https://openai.devpost.com/rules</a>
+<a href="https://memekr.github.io/submitops-scout/">https://memekr.github.io/submitops-scout/</a></div>
+      </div>
+    </section>
+  </main>
+  <script>
+    const filter = document.querySelector("#check-filter");
+    const checks = Array.from(document.querySelectorAll(".check"));
+    filter.addEventListener("change", () => {
+      for (const check of checks) {
+        const show = filter.value === "all" || check.dataset.status === filter.value;
+        check.style.display = show ? "" : "none";
+      }
+    });
+  </script>
+</body>
+</html>

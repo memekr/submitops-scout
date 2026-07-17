@@ -12,6 +12,7 @@ from submitops_scout.core import (
     write_packet,
 )
 from submitops_scout.gpt56_adapter import connector_status, write_review_payload
+from submitops_scout.static_demo import write_static_demo
 
 
 def build_parser() -> ArgumentParser:
@@ -42,6 +43,11 @@ def build_parser() -> ArgumentParser:
         "--devpost-map",
         type=Path,
         help="Optional Devpost field-map Markdown output path.",
+    )
+    parser.add_argument(
+        "--static-demo",
+        type=Path,
+        help="Optional static HTML demo dashboard output path.",
     )
     parser.add_argument(
         "--gpt56-status",
@@ -80,6 +86,8 @@ def main() -> None:
     write_packet(packet, args.out, args.json)
     if args.devpost_map:
         write_devpost_field_map(packet, args.devpost_map)
+    if args.static_demo:
+        write_static_demo(packet, args.static_demo)
     if args.gpt56_payload:
         write_review_payload(packet, args.gpt56_payload)
     if args.gpt56_status:

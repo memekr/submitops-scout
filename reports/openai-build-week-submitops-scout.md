@@ -1,6 +1,6 @@
 # SubmitOps Scout Packet
 
-Generated: 2026-07-16T18:18:26+00:00
+Generated: 2026-07-17T00:20:04+00:00
 Decision: DOWNGRADE
 
 ## Event Snapshot
@@ -8,7 +8,7 @@ Decision: DOWNGRADE
 - Event: OpenAI Build Week Packet
 - URL: https://openai.devpost.com/
 - Deadline: July 21, 2026, 5:00 PM PT, per Devpost rules.
-- Captured at: 2026-07-16T18:18:25+00:00
+- Captured at: 2026-07-17T00:20:04+00:00
 
 ## Tracks
 
@@ -35,7 +35,7 @@ Decision: DOWNGRADE
 ## Repository Evidence
 
 - Root: .
-- Scanned text files: 17
+- Scanned text files: 19
 - README: README.md
 - License: LICENSE
 - Tests: 2
@@ -44,7 +44,7 @@ Decision: DOWNGRADE
 - Video assets: missing
 - Devpost flow evidence: submission/openai-build-week-devpost-registration-gate.md
 - Live GPT-5.6 evidence: missing
-- Public URLs found: 18
+- Public URLs found: 22
 
 ## Public URL Verification
 

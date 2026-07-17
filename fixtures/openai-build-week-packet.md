@@ -1,6 +1,6 @@
 # OpenAI Build Week Packet
 
-Rechecked: 2026-07-17 03:18 KST.
+Rechecked: 2026-07-17 15:10 KST.
 Codex credits request submitted: 2026-07-17 03:18 KST.
 
 ## Event URL and Source Snapshot
@@ -18,11 +18,12 @@ Current source state:
 - Public deadline: July 21, 2026, 5:00 PM PT, per Devpost rules.
 - KST planning conversion: July 22, 2026, 9:00 AM KST, assuming PDT.
 - Official Rules are posted and reviewed.
-- Public Devpost participant count observed during this recheck: about 27,690.
+- Public Devpost participant count observed during this recheck: about 29,422.
 - Devpost says builders should create a working project using Codex and GPT-5.6.
 - OpenAI Build Week tracks include Apps for Your Life, Work and Productivity, Developer Tools, and Education.
 - Required submission materials include a chosen category, project description, public YouTube demo video under three minutes with audio, repository URL with README/setup/sample data, and a `/feedback` Codex Session ID from the primary build thread.
 - Developer tool submissions should include installation instructions, supported platforms, and a way for judges to test without rebuilding from scratch.
+- Static demo sandbox prepared for judges at https://memekr.github.io/submitops-scout/.
 - Devpost Resources say registered participants can request `$100 Codex credits` before Friday, July 17, 2026 at 12:00 PM PT; the resources copy says these are not API credits.
 - The official Codex credits request form was submitted before the cutoff and the confirmation page displayed `Your response has been recorded`. Credit approval and delivery are still pending.
 

@@ -1,6 +1,6 @@
 # OpenAI Build Week Devpost Field Map
 
-Generated: 2026-07-16T18:18:26+00:00
+Generated: 2026-07-17T00:20:04+00:00
 Status: DRAFT - DO NOT FINAL SUBMIT
 
 ## Source Snapshot
@@ -8,7 +8,7 @@ Status: DRAFT - DO NOT FINAL SUBMIT
 - Event: OpenAI Build Week Packet
 - Event URL: https://openai.devpost.com/
 - Deadline: July 21, 2026, 5:00 PM PT, per Devpost rules.
-- Captured at: 2026-07-16T18:18:25+00:00
+- Captured at: 2026-07-17T00:20:04+00:00
 
 ## Core Fields
 

@@ -13,6 +13,7 @@ from submitops_scout.core import (
     verify_public_urls,
 )
 from submitops_scout.gpt56_adapter import Gpt56ReviewConfig, build_review_payload, connector_status
+from submitops_scout.static_demo import render_static_demo
 
 if TYPE_CHECKING:
     import pytest
@@ -101,6 +102,25 @@ VIMEO_OEMBED = "https://vimeo.com/api/oembed.json?url="
         "Generated output with stale URL https://youtu.be/example:\n",
         encoding="utf-8",
     )
+    (tmp_path / "evidence.html").write_text(
+        """
+<a href="https://youtu.be/example">demo</a>
+<p>https://www.youtube.com/oembed?url=https://youtu.be/example&amp;format=json</p>
+""",
+        encoding="utf-8",
+    )
+    (tmp_path / "docs").mkdir()
+    (tmp_path / "docs" / "index.html").write_text(
+        """
+<a href="https://youtu.be/docs-only">generated demo</a>
+""",
+        encoding="utf-8",
+    )
+    (tmp_path / ".playwright-cli").mkdir()
+    (tmp_path / ".playwright-cli" / "page.yml").write_text(
+        "https://youtu.be/playwright-only\n",
+        encoding="utf-8",
+    )
     event = tmp_path / "event.md"
     event.write_text(
         """# OpenAI Build Week Packet
@@ -123,6 +143,9 @@ VIMEO_OEMBED = "https://vimeo.com/api/oembed.json?url="
     assert "https://www.youtube.com/oembed?url=https://youtu.be/example&format=json" in (
         packet.evidence.public_urls
     )
+    assert "https://www.youtube.com/oembed?url=https://youtu.be/example&amp;format=json" not in (
+        packet.evidence.public_urls
+    )
     assert "https://www.youtube.com/oembed?url=https://youtu.be/example&format=json'" not in (
         packet.evidence.public_urls
     )
@@ -131,6 +154,9 @@ VIMEO_OEMBED = "https://vimeo.com/api/oembed.json?url="
     )
     assert "https://vimeo.com/api/oembed.json?url=" not in packet.evidence.public_urls
     assert "https://youtu.be/example:" not in packet.evidence.public_urls
+    assert "https://youtu.be/example</a" not in packet.evidence.public_urls
+    assert "https://youtu.be/docs-only" not in packet.evidence.public_urls
+    assert "https://youtu.be/playwright-only" not in packet.evidence.public_urls
 
 
 def test_public_url_verification_records_reachable_and_absent_urls(
@@ -337,3 +363,34 @@ def test_gpt56_connector_status_does_not_expose_secret(
 
     assert "configured" in status
     assert "sk-secret" not in status
+
+
+def test_static_demo_renders_packet_with_escaped_event_content(tmp_path: Path) -> None:
+    _write_project(tmp_path)
+    event = tmp_path / "event.md"
+    event.write_text(
+        """# <script>alert(1)</script>
+- Public deadline: July 21, 2026, 5:00 PM PT.
+- Official Rules are posted and reviewed.
+- A working project built with Codex and GPT-5.6.
+- A public YouTube demo video.
+- A code repository with README.
+- /feedback Codex Session ID.
+
+Title: `<script>alert(2)</script>`
+
+Short description:
+
+> <img src=x onerror=alert(3)>
+""",
+        encoding="utf-8",
+    )
+    packet = assess_readiness(parse_event_packet(event), scan_repo_evidence(tmp_path))
+
+    html = render_static_demo(packet)
+
+    assert "<!doctype html>" in html
+    assert "&lt;script&gt;alert(2)&lt;/script&gt;" in html
+    assert "&lt;img src=x onerror=alert(3)&gt;" in html
+    assert "https://img.youtube.com/vi/example/hqdefault.jpg" in html
+    assert "/feedback Session ID present" in html
