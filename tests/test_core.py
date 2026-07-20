@@ -313,6 +313,7 @@ Usage with Codex and GPT-5.6.
 Do not submit until /feedback evidence and the live GPT-5.6/no-billing boundary are complete.
 No live GPT-5.6 review call has been run with verified free credits.
 Live GPT-5.6 review evidence has not been captured under a no-billing boundary.
+> Template after proof only: live GPT-5.6 review evidence packet captured.
 """,
         encoding="utf-8",
     )

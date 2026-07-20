@@ -521,6 +521,9 @@ def _find_secret_lines(rel: str, text: str) -> tuple[SecretFinding, ...]:
 
 def _has_live_gpt56_evidence(text: str) -> bool:
     for line in text.splitlines():
+        stripped = line.lstrip()
+        if stripped.startswith(">"):
+            continue
         lower = line.lower()
         if any(term in lower for term in BLOCKED_EVIDENCE_TERMS):
             continue

@@ -13,6 +13,8 @@ Codex credits request evidence: submission/openai-build-week-codex-credits-reque
 Proof boundary gate: submission/openai-build-week-proof-boundary-gate.md
 Public URL verification gate: submission/openai-build-week-public-url-verification-gate.md
 Source freshness parse gate: submission/openai-build-week-source-freshness-parse-gate.md
+Final 52-hour submit lock: submission/openai-build-week-final-52-hour-submit-lock.md
+Final 42-hour proof lock: submission/openai-build-week-final-42-hour-proof-lock.md
 
 This initial Build Week version is scoped to the OpenAI Build Week requirements:
 
@@ -77,6 +79,14 @@ separate live review.
 The Devpost field map is intentionally guarded. If public video, repository, or
 `/feedback` evidence is missing, the map labels those fields as blocked rather
 than inventing paste-ready values.
+
+## Final Submit Lock
+
+`submission/openai-build-week-final-42-hour-proof-lock.md` is the current
+operator sheet for the July 21, 2026 PDT deadline. It keeps Qwen as an
+external-blocker fallback, records the fresh July 20 public source state, and
+locks the exact proof gates that must be complete before any final Devpost
+submission.
 
 ## Static Demo Sandbox
 
