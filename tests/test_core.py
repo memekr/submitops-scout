@@ -30,7 +30,7 @@ def _write_project(root: Path) -> None:
 
 Run this project with Codex-built setup instructions.
 It integrates GPT-5.6 through a Responses API review payload.
-Live GPT-5.6 review evidence status: complete; response id resp_123456789abc.
+Live GPT-5.6 evidence packet captured via Codex session transcript.
 Primary /feedback Session ID: sess_123456789abc.
 Demo: https://youtu.be/example
 Repository: https://github.com/memekr/demo
@@ -299,7 +299,7 @@ def test_readiness_downgrades_when_external_video_and_feedback_are_missing(tmp_p
     packet = assess_readiness(parse_event_packet(event), scan_repo_evidence(tmp_path))
 
     assert packet.decision == "downgrade"
-    assert "live GPT-5.6 review evidence present" in packet.blockers
+    assert "live GPT-5.6 evidence packet present" in packet.blockers
     assert "/feedback Session ID present" in packet.blockers
     assert "public demo video present" in packet.blockers
 
@@ -313,7 +313,7 @@ Usage with Codex and GPT-5.6.
 Do not submit until /feedback evidence and the live GPT-5.6/no-billing boundary are complete.
 No live GPT-5.6 review call has been run with verified free credits.
 Live GPT-5.6 review evidence has not been captured under a no-billing boundary.
-> Template after proof only: live GPT-5.6 review evidence packet captured.
+> Template after proof only: live GPT-5.6 evidence packet captured.
 """,
         encoding="utf-8",
     )
@@ -323,7 +323,7 @@ Live GPT-5.6 review evidence has not been captured under a no-billing boundary.
     packet = assess_readiness(parse_event_packet(event), scan_repo_evidence(tmp_path))
 
     assert not packet.evidence.gpt56_live_evidence_paths
-    assert "live GPT-5.6 review evidence present" in packet.blockers
+    assert "live GPT-5.6 evidence packet present" in packet.blockers
 
 
 def test_devpost_field_map_uses_draft_answers_and_blockers(tmp_path: Path) -> None:
@@ -369,7 +369,7 @@ What it does:
     assert "Category: Developer Tools" in field_map
     assert "fixtures/openai-build-week-packet.md" in field_map
     assert "BLOCKED: public YouTube demo URL not recorded yet" in field_map
-    assert "BLOCKED: run live GPT-5.6 review" in field_map
+    assert "BLOCKED: capture live GPT-5.6 evidence packet" in field_map
     assert "Codex Credits State" in field_map
     assert "Submitted; approval/code delivery pending." in field_map
     assert "Do not treat this as OpenAI API credit proof." in field_map

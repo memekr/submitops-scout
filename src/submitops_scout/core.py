@@ -62,8 +62,11 @@ FEEDBACK_ID_PATTERN = re.compile(
 )
 GPT56_LIVE_EVIDENCE_PATTERN = re.compile(
     r"(?i)(?:"
-    r"(?:live\s+)?gpt[- ]?5\.6\s+(?:review|api|responses api|evidence)"
-    r"|(?:live\s+)?(?:review|api|responses api|evidence)\s+.*gpt[- ]?5\.6"
+    r"(?:live\s+)?gpt[- ]?5\.6\s+"
+    r"(?:review|api|responses api|codex session|session|evidence|evidence packet|model proof)"
+    r"|(?:live\s+)?"
+    r"(?:review|api|responses api|codex session|session|evidence|evidence packet|model proof)"
+    r"\s+.*gpt[- ]?5\.6"
     r").*(?:complete|completed|pass|passed|captured|response id|resp_[A-Za-z0-9_-]+)"
 )
 BLOCKED_EVIDENCE_TERMS = (
@@ -619,7 +622,7 @@ def assess_readiness(event: EventSnapshot, evidence: RepoEvidence) -> Submission
             detail=", ".join(evidence.gpt56_mentions[:5]),
         ),
         _check(
-            "live GPT-5.6 review evidence present",
+            "live GPT-5.6 evidence packet present",
             passed=bool(evidence.gpt56_live_evidence_paths),
             detail=", ".join(evidence.gpt56_live_evidence_paths[:5]),
         ),
@@ -832,7 +835,10 @@ def _feedback_value(evidence: RepoEvidence) -> str:
 def _gpt56_live_value(evidence: RepoEvidence) -> str:
     if evidence.gpt56_live_evidence_paths:
         return "Evidence found in " + ", ".join(evidence.gpt56_live_evidence_paths[:3])
-    return "BLOCKED: run live GPT-5.6 review only after verified no-billing/free-credit boundary"
+    return (
+        "BLOCKED: capture live GPT-5.6 evidence packet after verified "
+        "Codex/free/prepaid/no-auto-top-up boundary"
+    )
 
 
 def _public_url_verification_section(packet: SubmissionPacket) -> str:
@@ -923,7 +929,7 @@ Status: {paste_status}
 - Repository URL: {_repo_url(packet.evidence)}
 - Demo video URL: {_video_url(packet.evidence)}
 - /feedback Codex Session ID: {_feedback_value(packet.evidence)}
-- Live GPT-5.6 review evidence: {_gpt56_live_value(packet.evidence)}
+- Live GPT-5.6 evidence packet: {_gpt56_live_value(packet.evidence)}
 {_devpost_flow_section(packet.evidence)}
 {_codex_credits_section(packet.event)}
 {_public_url_verification_section(packet)}
@@ -936,9 +942,10 @@ Status: {paste_status}
 
 Codex was used to build the Python/uv CLI, source packet parser, repository
 evidence scanner, readiness gate, tests, and generated submission artifacts.
-The project includes a GPT-5.6 Responses API review payload generator so a
-verified no-billing live review can check the final packet for unsupported
-claims before Devpost submission. Current live evidence gate: {_gpt56_live_value(packet.evidence)}.
+The project includes an optional GPT-5.6 Responses API review payload generator,
+but the final submission gate accepts only explicit live GPT-5.6 proof, whether
+that proof comes from Codex session evidence or a verified no-billing live API
+review. Current live evidence gate: {_gpt56_live_value(packet.evidence)}.
 
 ## Judge Testing Instructions
 

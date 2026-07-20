@@ -2,6 +2,7 @@
 
 Rechecked: 2026-07-18 03:16 KST.
 Rechecked: 2026-07-20 15:23 KST.
+Rechecked: 2026-07-20 21:24 KST.
 Codex credits request submitted: 2026-07-17 03:18 KST.
 
 ## Event URL and Source Snapshot
@@ -20,15 +21,17 @@ Current source state:
 - Public deadline: July 21, 2026, 5:00 PM PT, per Devpost rules.
 - KST planning conversion: July 22, 2026, 9:00 AM KST, assuming PDT.
 - Official Rules are posted and reviewed.
-- Public Devpost participant count observed during the July 20 15:23 KST recheck: 43,706.
+- Public Devpost participant count observed during the July 20 21:24 KST recheck: 44,222 on the rules surface.
 - Devpost says builders should create a working project using Codex and GPT-5.6.
 - OpenAI Build Week tracks include Apps for Your Life, Work and Productivity, Developer Tools, and Education.
 - Required submission materials include a chosen category, project description, public YouTube demo video under three minutes with audio, repository URL with README/setup/sample data, and a `/feedback` Codex Session ID from the primary build thread.
 - The FAQ says Codex usage must be demonstrated in the text description, demo video, and README; GPT-5.6 must be clearly referenced in the demo video and repository.
+- The FAQ says the `/feedback` Codex Session ID must come from the primary thread where most core functionality was built.
 - The FAQ says judges are not required to build the project from scratch, so developer-tool submissions should provide a working demo link, sandbox, or comparable no-rebuild path.
 - Developer tool submissions should include installation instructions, supported platforms, and a way for judges to test without rebuilding from scratch.
 - Static demo sandbox prepared for judges at https://memekr.github.io/submitops-scout/.
 - Final 42-hour proof lock prepared at `submission/openai-build-week-final-42-hour-proof-lock.md`.
+- Final 36-hour Codex proof boundary prepared at `submission/openai-build-week-final-36-hour-codex-proof-boundary.md`.
 - Devpost Resources say registered participants can request `$100 Codex credits` before Friday, July 17, 2026 at 12:00 PM PT; the resources copy says these are not API credits.
 - The official Codex credits request form was submitted before the cutoff and the confirmation page displayed `Your response has been recorded`. Credit approval and delivery are still pending.
 - A July 18 KST signed-in Chrome recheck found Devpost still logged in as `spdish12`, but project draft creation/access remains blocked by Devpost reCAPTCHA after `Create project`; direct edit access for a transient `/manage/submissions/1088316/edit` URL returned `You are not authorized to access this page` and is not stable draft proof.
@@ -37,8 +40,9 @@ Current source state:
 
 - Devpost account is required.
 - OpenAI/Codex access is required.
-- OpenAI/Codex credits must stay within verified free, prepaid, or no-auto-top-up boundaries before any live GPT-5.6 evidence run.
+- OpenAI/Codex usage must stay within verified free, prepaid, or no-auto-top-up boundaries before any live GPT-5.6 evidence capture.
 - The submitted Codex credits request is not proof of API credits; do not run any billable API or paid resource path from this request alone.
+- GPT-5.6 proof may be a Codex session evidence packet or a verified no-billing/free/prepaid API review packet, but quoted templates and blocker text are not proof.
 - Do not assert age, residence, team, employer, or organization facts unless the entrant confirms them.
 - Do not proceed through payment, travel, tax, banking, government ID, CAPTCHA bypass, broad IP-transfer, or unsupported eligibility gates.
 
@@ -63,5 +67,5 @@ Why it can win:
 - Devpost registration is complete, but project draft creation/access is blocked by Devpost reCAPTCHA after `Create project`; direct edit access is not stable draft proof.
 - Codex credits request is submitted but not yet approved or delivered.
 - Official `/feedback` Codex Session ID is not inserted.
-- Live GPT-5.6 review evidence has not been captured under a verified no-billing/free-credit boundary.
+- Live GPT-5.6 evidence packet has not been captured under a verified Codex/free/prepaid/no-auto-top-up boundary.
 - Final Devpost preview and submit are not complete.

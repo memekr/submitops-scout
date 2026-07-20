@@ -15,6 +15,7 @@ Public URL verification gate: submission/openai-build-week-public-url-verificati
 Source freshness parse gate: submission/openai-build-week-source-freshness-parse-gate.md
 Final 52-hour submit lock: submission/openai-build-week-final-52-hour-submit-lock.md
 Final 42-hour proof lock: submission/openai-build-week-final-42-hour-proof-lock.md
+Final 36-hour Codex proof boundary: submission/openai-build-week-final-36-hour-codex-proof-boundary.md
 
 This initial Build Week version is scoped to the OpenAI Build Week requirements:
 
@@ -26,9 +27,9 @@ This initial Build Week version is scoped to the OpenAI Build Week requirements:
 - `/feedback` Codex Session ID from the primary build thread
 - installation and judge-testing path for developer tools
 
-The tool never claims a public video, live GPT-5.6 call, final Devpost submit, or
-eligibility fact unless it finds supporting evidence. Missing proof becomes a
-`downgrade` or `stop` status in the packet.
+The tool never claims a public video, live GPT-5.6 evidence packet, final
+Devpost submit, or eligibility fact unless it finds supporting evidence. Missing
+proof becomes a `downgrade` or `stop` status in the packet.
 
 ## Usage
 
@@ -49,6 +50,7 @@ uv run submitops-scout fixtures/openai-build-week-packet.md . \
   --require-public-url https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-judge-quickstart-gate.md \
   --require-public-url https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-static-demo-sandbox.md \
   --require-public-url https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-source-freshness-parse-gate.md \
+  --require-public-url https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-final-36-hour-codex-proof-boundary.md \
   --forbid-public-url https://raw.githubusercontent.com/memekr/submitops-scout/main/.env
 ```
 
@@ -82,8 +84,8 @@ than inventing paste-ready values.
 
 ## Final Submit Lock
 
-`submission/openai-build-week-final-42-hour-proof-lock.md` is the current
-operator sheet for the July 21, 2026 PDT deadline. It keeps Qwen as an
+`submission/openai-build-week-final-36-hour-codex-proof-boundary.md` is the
+current operator sheet for the July 21, 2026 PDT deadline. It keeps Qwen as an
 external-blocker fallback, records the fresh July 20 public source state, and
 locks the exact proof gates that must be complete before any final Devpost
 submission.
@@ -143,9 +145,10 @@ useful beyond a toy repository scan.
 
 `submitops_scout.gpt56_adapter` prepares a Responses API payload for `gpt-5.6`
 submission review. It does not make network calls or read secrets. The readiness
-gate now separates general GPT-5.6 mentions from live review evidence. A later
-run can promote this only after `OPENAI_API_KEY`, free credits, and no-auto-top-up
-boundaries are verified.
+gate separates general GPT-5.6 mentions from explicit live GPT-5.6 evidence
+packets. That proof may come from Codex session evidence or a verified
+no-billing/free/prepaid API review path, but template text and blocker language
+do not count.
 
 Primary source references:
 
