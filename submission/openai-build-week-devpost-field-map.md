@@ -1,6 +1,6 @@
 # OpenAI Build Week Devpost Field Map
 
-Generated: 2026-07-20T06:26:40+00:00
+Generated: 2026-07-20T12:29:05+00:00
 Status: DRAFT - DO NOT FINAL SUBMIT
 
 ## Source Snapshot
@@ -8,7 +8,7 @@ Status: DRAFT - DO NOT FINAL SUBMIT
 - Event: OpenAI Build Week Packet
 - Event URL: https://openai.devpost.com/
 - Deadline: July 21, 2026, 5:00 PM PT, per Devpost rules.
-- Captured at: 2026-07-20T06:26:36+00:00
+- Captured at: 2026-07-20T12:29:03+00:00
 
 ## Core Fields
 
@@ -18,7 +18,7 @@ Status: DRAFT - DO NOT FINAL SUBMIT
 - Repository URL: https://github.com/memekr/submitops-scout
 - Demo video URL: https://youtu.be/6PCzqJu1dRU
 - /feedback Codex Session ID: BLOCKED: paste /feedback Codex Session ID from primary build thread
-- Live GPT-5.6 review evidence: BLOCKED: run live GPT-5.6 review only after verified no-billing/free-credit boundary
+- Live GPT-5.6 evidence packet: BLOCKED: capture live GPT-5.6 evidence packet after verified Codex/free/prepaid/no-auto-top-up boundary
 
 ## Live Devpost State
 
@@ -46,6 +46,7 @@ Status: DRAFT - DO NOT FINAL SUBMIT
 - PASS: reachable https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-judge-quickstart-gate.md - HTTP 200
 - PASS: reachable https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-static-demo-sandbox.md - HTTP 200
 - PASS: reachable https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-source-freshness-parse-gate.md - HTTP 200
+- PASS: reachable https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-final-36-hour-codex-proof-boundary.md - HTTP 200
 - PASS: absent https://raw.githubusercontent.com/memekr/submitops-scout/main/.env - HTTP 404
 
 
@@ -57,9 +58,10 @@ The tool parses competition source facts, scans a local project for submission e
 
 Codex was used to build the Python/uv CLI, source packet parser, repository
 evidence scanner, readiness gate, tests, and generated submission artifacts.
-The project includes a GPT-5.6 Responses API review payload generator so a
-verified no-billing live review can check the final packet for unsupported
-claims before Devpost submission. Current live evidence gate: BLOCKED: run live GPT-5.6 review only after verified no-billing/free-credit boundary.
+The project includes an optional GPT-5.6 Responses API review payload generator,
+but the final submission gate accepts only explicit live GPT-5.6 proof, whether
+that proof comes from Codex session evidence or a verified no-billing live API
+review. Current live evidence gate: BLOCKED: capture live GPT-5.6 evidence packet after verified Codex/free/prepaid/no-auto-top-up boundary.
 
 ## Judge Testing Instructions
 
@@ -92,5 +94,5 @@ It is a practical Codex-native developer tool with a live deadline use case. Ins
 
 ## Current Blockers
 
-- live GPT-5.6 review evidence present
+- live GPT-5.6 evidence packet present
 - /feedback Session ID present

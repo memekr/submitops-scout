@@ -83,6 +83,7 @@ BLOCKED_EVIDENCE_TERMS = (
     "not configured",
     "not run",
     "only after",
+    "only if",
     "pending",
     "placeholder",
     "todo",

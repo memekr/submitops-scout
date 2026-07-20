@@ -1,6 +1,6 @@
 # SubmitOps Scout Packet
 
-Generated: 2026-07-20T06:26:40+00:00
+Generated: 2026-07-20T12:29:05+00:00
 Decision: DOWNGRADE
 
 ## Event Snapshot
@@ -8,7 +8,7 @@ Decision: DOWNGRADE
 - Event: OpenAI Build Week Packet
 - URL: https://openai.devpost.com/
 - Deadline: July 21, 2026, 5:00 PM PT, per Devpost rules.
-- Captured at: 2026-07-20T06:26:36+00:00
+- Captured at: 2026-07-20T12:29:03+00:00
 
 ## Tracks
 
@@ -22,6 +22,7 @@ Decision: DOWNGRADE
 - Devpost says builders should create a working project using Codex and GPT-5.6
 - Required submission materials include a chosen category, project description, public YouTube demo video under three minutes with audio, repository URL with README/setup/sample data, and a `/feedback` Codex Session ID from the primary build thread
 - The FAQ says Codex usage must be demonstrated in the text description, demo video, and README; GPT-5.6 must be clearly referenced in the demo video and repository
+- The FAQ says the `/feedback` Codex Session ID must come from the primary thread where most core functionality was built
 - Developer tool submissions should include installation instructions, supported platforms, and a way for judges to test without rebuilding from scratch
 
 ## Account Requirements
@@ -30,14 +31,13 @@ Decision: DOWNGRADE
 - The official Codex credits request form was submitted before the cutoff and the confirmation page displayed `Your response has been recorded`. Credit approval and delivery are still pending
 - Devpost account is required
 - OpenAI/Codex access is required
-- OpenAI/Codex credits must stay within verified free, prepaid, or no-auto-top-up boundaries before any live GPT-5.6 evidence run
 - The submitted Codex credits request is not proof of API credits; do not run any billable API or paid resource path from this request alone
 - Codex credits request is submitted but not yet approved or delivered
 
 ## Repository Evidence
 
 - Root: .
-- Scanned text files: 23
+- Scanned text files: 24
 - README: README.md
 - License: LICENSE
 - Tests: 2
@@ -46,7 +46,7 @@ Decision: DOWNGRADE
 - Video assets: missing
 - Devpost flow evidence: submission/openai-build-week-devpost-draft-access-recheck.md, submission/openai-build-week-devpost-registration-gate.md
 - Live GPT-5.6 evidence: missing
-- Public URLs found: 24
+- Public URLs found: 25
 
 ## Public URL Verification
 
@@ -60,6 +60,7 @@ Decision: DOWNGRADE
 - PASS: reachable https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-judge-quickstart-gate.md - HTTP 200
 - PASS: reachable https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-static-demo-sandbox.md - HTTP 200
 - PASS: reachable https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-source-freshness-parse-gate.md - HTTP 200
+- PASS: reachable https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-final-36-hour-codex-proof-boundary.md - HTTP 200
 - PASS: absent https://raw.githubusercontent.com/memekr/submitops-scout/main/.env - HTTP 404
 
 
@@ -74,7 +75,7 @@ Decision: DOWNGRADE
 - PASS: sample data present - fixtures/openai-build-week-packet.md, fixtures/qwen-cloud-packet.md, reports/openai-build-week-gpt56-payload.json, reports/openai-build-week-submitops-scout.json, reports/openai-build-week-submitops-scout.md
 - PASS: Codex evidence present - README.md, fixtures/openai-build-week-packet.md, pyproject.toml, scripts/render-openai-demo-video.sh, src/submitops_scout/core.py
 - PASS: GPT-5.6 evidence present - README.md, fixtures/openai-build-week-packet.md, scripts/render-openai-demo-video.sh, src/submitops_scout/cli.py, src/submitops_scout/core.py
-- MISSING: live GPT-5.6 review evidence present - no detail
+- MISSING: live GPT-5.6 evidence packet present - no detail
 - MISSING: /feedback Session ID present - no detail
 - PASS: public demo video present - https://youtu.be/6PCzqJu1dRU, https://www.youtube.com/oembed?url=https://youtu.be/6PCzqJu1dRU&format=json
 - PASS: secret scan clear - 0 findings
@@ -88,11 +89,12 @@ Decision: DOWNGRADE
 - PASS: public URL reachable: https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-judge-quickstart-gate.md - HTTP 200
 - PASS: public URL reachable: https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-static-demo-sandbox.md - HTTP 200
 - PASS: public URL reachable: https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-source-freshness-parse-gate.md - HTTP 200
+- PASS: public URL reachable: https://raw.githubusercontent.com/memekr/submitops-scout/main/submission/openai-build-week-final-36-hour-codex-proof-boundary.md - HTTP 200
 - PASS: public URL absent: https://raw.githubusercontent.com/memekr/submitops-scout/main/.env - HTTP 404
 
 ## Blockers
 
-- live GPT-5.6 review evidence present
+- live GPT-5.6 evidence packet present
 - /feedback Session ID present
 
 ## Secret Findings
